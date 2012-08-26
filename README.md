@@ -1,8 +1,8 @@
 # gosexy.org source code
 
-This is the source code of the [gosexy](http://gosexy.org) website.
+This is the source code of the [gosexy](http://gosexy.org) website. You can serve it with [Luminos](http://luminos.menteslibres.org).
 
-It runs with [Luminos](http://luminos.menteslibres.org).
+At this time, this website is just a draft.
 
 ## License
 

@@ -1,0 +1,13 @@
+page:
+  brand: "gosexy"
+  head:
+    title: "gosexy, Go tools and wrappers"
+  body:
+    title: "gosexy, Go tools and wrappers"
+    menu:
+      - { text: "Getting started", url: "/getting-started" }
+      - { text: "Database", url: "/db" }
+      #- { text: "Canvas", url: "/canvas" }
+      - { text: "Source code", url: "https://github.com/gosexy" }
+    menu_pull:
+      - { text: "Home", url: "/" }

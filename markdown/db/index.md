@@ -1,10 +1,11 @@
 # gosexy/db
 
-This package is a wrapper of popular third party SQL and NO-SQL database drivers. The goal of this abstraction is
-to provide a common, simplified and consistent layer for generic tasks, such as *deleting*, *updating*, *removing*,
-*counting* and *finding* row, all without the need of SQL statements.
+This package is an abstraction for wrappers of popular third party SQL and No-SQL database drivers.
 
-For any special database-specific operation, the low-level driver could still be used, as it could be retrieved
+The main goal of this abstraction is to provide a common, simplified and consistent layer for generic tasks,
+such as *deleting*, *updating*, *removing*, *counting* and *finding* rows without the need of SQL statements.
+
+For any special database-specific operation, the low-level driver is still exposed, as it could be retrieved
 as an ``interface{}`` using a method in the ``db.Database`` structure.
 
 ## Installation
@@ -13,8 +14,8 @@ Use ``go get`` to download and install ``github.com/gosexy/db``.
 
     % go get github.com/gosexy/db
 
-The ``github.com/gosexy/db`` package provides the basics for using wrappers but it cannot connect to a database by itself,
-in order to connect to an actual database a wrapper is required.
+The ``github.com/gosexy/db`` package provides the basics for using wrappers but it cannot connect to any
+database by itself, in order to connect to a database a wrapper is required.
 
 Each low-level driver has it's own requeriments, please refer to the wrapper page to know how to install it.
 
@@ -24,7 +25,6 @@ Each low-level driver has it's own requeriments, please refer to the wrapper pag
 * [mysql](/db/mysql)
 * [postgresql](/db/postgresql)
 * [sqlite](/db/sqlite)
-
 
 ## Usage example
 
@@ -87,4 +87,4 @@ Use your ``db.Database`` object (``sess``) to request the driver to connect to a
 
 ## What's next?
 
-Now that you are connected to a database you can use Database or Collection methods.
+Now that you are connected to a database you can use [Database](/db/database) or [Collection](/db/collection) methods.

@@ -1,6 +1,6 @@
 # db.Database
 
-The ``db.Database`` type is an interface that exposes common tasks on databases.
+The ``db.Database`` type is an interface that has methods for common tasks on databases.
 
     type Database interface {
       Driver() interface{}
@@ -19,7 +19,7 @@ The ``db.Database`` type is an interface that exposes common tasks on databases.
 
 Returns the current wrapper's low-level driver as an ``interface{}``, so for any special query you can still request the driver
 to do it. For example, if you're using the ``github.com/gosexy/db/mongo`` wrapper this method will return a
-``*mgo.Session`` interface, as the wrapper uses [mgo](http://labix.org/mgo) as it's low-level driver.
+``*mgo.Session`` object, as the wrapper uses [mgo](http://labix.org/mgo) as it's low-level driver.
 
 ## db.Database.Open() *error*
 
@@ -32,9 +32,10 @@ Disconnects from the database session. Returns *error* if something goes wrong.
 ## db.Database.Collection(name string) *db.Collection*
 
 Returns a ``db.Collection``, collections are sets of rows or documents, so this could be either a MongoDB collection or a
-MySQL/PostgreSQL/SQLite table. You can *create*, *read*, *update* or *delete* rows on any given a collection.
+MySQL/PostgreSQL/SQLite table.
 
-Please read all the methods avaiable for ``db.Collection`` on the [Collection](/db/collection) menu.
+You may want to read [Collection](/db/collection) methods to know how to *create*, *read*, *update* or *delete* rows on
+any given a collection.
 
 ## db.Database.Collections() *[]string*
 

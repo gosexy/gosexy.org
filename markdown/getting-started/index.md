@@ -103,4 +103,4 @@ the same.
 We created a proof of concept on four different databases: MongoDB, MySQL, PostgreSQL and SQLite. Each one of them very different to
 the other. And we achieved our objective to a certain extent. The wrappers are not still 100% compatible but that's our final goal.
 
-If you want to know more, please read our documentation on [github.com/gosexy/db](/db).
+If you want to know more, please read our documentation on [gosexy/db](/db).

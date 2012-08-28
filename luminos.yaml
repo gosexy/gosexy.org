@@ -6,7 +6,7 @@ page:
     title: "gosexy, Go tools and wrappers"
     menu:
       - { text: "Getting started", url: "/getting-started" }
-      - { text: "Database", url: "/db" }
+      - { text: "gosexy/db", url: "/db" }
       #- { text: "Canvas", url: "/canvas" }
       - { text: "Source code", url: "https://github.com/gosexy" }
     menu_pull:

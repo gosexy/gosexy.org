@@ -21,10 +21,10 @@ Each low-level driver has it's own requeriments, please refer to the wrapper pag
 
 ## Database wrappers
 
-* [mongo](/db/mongo)
-* [mysql](/db/mysql)
-* [postgresql](/db/postgresql)
-* [sqlite](/db/sqlite)
+* [mongo](/db/wrappers/mongo)
+* [mysql](/db/wrappers/mysql)
+* [postgresql](/db/wrappers/postgresql)
+* [sqlite](/db/wrappers/sqlite)
 
 ## Usage example
 

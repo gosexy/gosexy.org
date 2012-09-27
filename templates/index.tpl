@@ -29,11 +29,52 @@
     <link rel="stylesheet" href="http://static.hckr.org/bootstrap/css/bootstrap.css" />
     <link rel="stylesheet" href="http://static.hckr.org/bootstrap/css/bootstrap-responsive.css" />
 
+    <link rel="stylesheet" href="http://static.hckr.org/google-code-prettify/prettify.css" />
+    <script type="text/javascript" src="http://static.hckr.org/google-code-prettify/prettify.js"></script>
+
+    <link rel="stylesheet" href="/styles.css" />
+
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <script type="text/javascript">
       $(document.body).ready(
         function() {
+          // Code (marking code blocks for prettyPrint)
+          var code = $('code');
+
+          for (var i = 0; i < code.length; i++) {
+            var el = $(code[i])
+            var className = el.attr('class');
+            if (className) {
+              el.addClass('prettyprint');
+              el.addClass('lang-'+className);
+            }
+          };
+
+          // An exception, LaTeX blocks.
+          var code = $('code.latex');
+
+          for (var i = 0; i < code.length; i++) {
+            var el = $(code[i])
+            var img = $('<img>', { 'src': 'http://phibin.com/api/render?snippet='+encodeURIComponent(el.html()) });
+            img.insertBefore(el);
+            el.hide();
+          };
+
+          // Starting prettyPrint.
+          prettyPrint();
+
+          // Tables without class
+
+          $('table').each(
+            function(i, el) {
+              if (!$(el).attr('class')) {
+                $(el).addClass('table');
+              };
+            }
+          );
+
+          // Navigation
           var links = $('ul.menu li').removeClass('active');
 
           for (var i = 0; i < links.length; i++) {
@@ -42,6 +83,7 @@
               $(links[i]).addClass('active');
             };
           };
+
         }
       );
     </script>
@@ -91,14 +133,19 @@
     {{ if .IsHome }}
 
       <div class="hero-unit">
-        <h1>gosexy.org</h1>
+        <h1>github.com/gosexy</h1>
         <p>
           Syntactic sugar, libraries and wrappers for <a href="http://golang.org" target="_blank">Go</a>.
         </p>
         <p class="pull-right">
           <a href="/getting-started" class="btn btn-primary btn-large">
-            What's this?
+            Get started
           </a>
+<!--
+          <a href="/download" class="btn btn-large">
+            Download
+          </a>
+-->
         </p>
       </div>
 

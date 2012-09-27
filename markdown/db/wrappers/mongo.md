@@ -9,36 +9,48 @@ to install ``mgo``.
 
 If you're using ``brew`` and OSX, you can install it like this:
 
-    % brew install bzr
+```sh
+% brew install bzr
+```
 
 On ArchLinux you could use
 
-    % sudo pacman -S bzr
+```sh
+% sudo pacman -S bzr
+```
 
 And on Debian based distros
 
-    % sudo aptitude install bzr
+```sh
+% sudo aptitude install bzr
+```
 
 ## Installing the wrapper
 
-    $ go get github.com/xiam/gosexy/db/mongo
+```sh
+% go get github.com/gosexy/db/mongo
+```
 
 ## Usage
 
-    import (
-      "github.com/gosexy/db"
-      "github.com/gosexy/db/mongo"
-    )
+```go
+import (
+  "github.com/gosexy/db"
+  "github.com/gosexy/db/mongo"
+)
+```
 
 ## Connecting to a MongoDB database
 
-    sess := mongo.Session(db.DataSource{Host: "127.0.0.1"})
+```go
+sess := mongo.Session(db.DataSource{Host: "127.0.0.1"})
 
-    err := sess.Open()
+err := sess.Open()
 
-    if err == nil {
-      defer sess.Close()
-    }
+if err == nil {
+  defer sess.Close()
+}
+```
 
 ## Making queries to the database
 

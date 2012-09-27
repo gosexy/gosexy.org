@@ -34,56 +34,63 @@ Here's an example on how to connect to a MySQL database with the ``github.com/go
 
 After installing the wrapper, import it into your project's code.
 
-    import "github.com/gosexy/db/mysql"
+```go
+import "github.com/gosexy/db/mysql"
+```
 
 ### 2. Set up the source
 
 Use the ``db.Session`` method of your driver to create a database session.
 
-
-    // returns a *db.Database object.
-    sess := mysql.Session(
-      db.DataSource{
-        Host: "localhost",
-        Database: "test",
-        User: "myuser",
-        Password: "mypass",
-      },
-    )
+```go
+// returns a *db.Database object.
+sess := mysql.Session(
+  db.DataSource{
+    Host:     "localhost",
+    Database: "test",
+    User:     "myuser",
+    Password: "mypass",
+  },
+)
+```
 
 The ``db.DataSource`` type is a generic structure than stores database connection settings:
 
-    // Connection and authentication data.
-    type DataSource struct {
-      Host     string
-      Port     int
-      Database string
-      User     string
-      Password string
-    }
+```go
+// Connection and authentication data.
+type DataSource struct {
+  Host     string
+  Port     int
+  Database string
+  User     string
+  Password string
+}
+```
 
 ### 3. Request a connection.
 
 Use your ``db.Database`` object (``sess``) to request the driver to connect to a database using its
 ``db.Database.Open()`` method.
 
-    // Setting up database.
-    sess := mysql.Session(
-      db.DataSource{
-        Host: "localhost",
-        Database: "test",
-        User: "myuser",
-        Password: "mypass",
-      },
-    )
+```go
+// Setting up database.
+sess := mysql.Session(
+  db.DataSource{
+    Host:     "localhost",
+    Database: "test",
+    User:     "myuser",
+    Password: "mypass",
+  },
+)
 
-    // Requesting the driver to connect to the database.
-    err := sess.Open()
+// Requesting the driver to connect to the database.
+err := sess.Open()
 
-    // Don't forget to close the connection when it's not required anymore.
-    if err != nil {
-      defer sess.Close()
-    }
+// Don't forget to close the connection when it's not required anymore.
+if err != nil {
+  defer sess.Close()
+}
+```
 
 ## What's next?
 

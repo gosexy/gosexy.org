@@ -9,24 +9,30 @@ own features.
 
 ## Installing the wrapper
 
-    % go get github.com/xiam/gosexy/db/postgresql
+```sh
+% go get github.com/gosexy/db/postgresql
+```
 
 ## Usage
 
-    import (
-      "github.com/xiam/gosexy/db"
-      "github.com/xiam/gosexy/db/postgresql"
-    )
+```go
+import (
+  "github.com/gosexy/db"
+  "github.com/gosexy/db/postgresql"
+)
+```
 
 ## Connecting to a PostgreSQL database
 
-    sess := postgresql.Session(db.DataSource{Host: "127.0.0.1"})
+```go
+sess := postgresql.Session(db.DataSource{Host: "127.0.0.1"})
 
-    err := sess.Open()
+err := sess.Open()
 
-    if err == nil {
-      defer sess.Close()
-    }
+if err == nil {
+  defer sess.Close()
+}
+```
 
 ## Making queries to the database
 

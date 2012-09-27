@@ -2,18 +2,20 @@
 
 The ``db.Database`` type is an interface that has methods for common tasks on databases.
 
-    type Database interface {
-      Driver() interface{}
+```go
+type Database interface {
+  Driver() interface{}
 
-      Open() error
-      Close() error
+  Open() error
+  Close() error
 
-      Collection(string) Collection
-      Collections() []string
+  Collection(string) Collection
+  Collections() []string
 
-      Use(string) error
-      Drop() error
-    }
+  Use(string) error
+  Drop() error
+}
+```
 
 ## db.Database.Driver() *interface{}*
 
@@ -34,7 +36,7 @@ Disconnects from the database session. Returns *error* if something goes wrong.
 Returns a ``db.Collection``, collections are sets of rows or documents, so this could be either a MongoDB collection or a
 MySQL/PostgreSQL/SQLite table.
 
-You may want to read [Collection](/db/collection) methods to know how to *create*, *read*, *update* or *delete* rows on
+You may want to read [db.Collection](/db/collection) methods to know how to *create*, *read*, *update* or *delete* rows on
 any given a collection.
 
 ## db.Database.Collections() *[]string*

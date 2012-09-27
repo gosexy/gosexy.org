@@ -1,17 +1,15 @@
 # Isn't Go sexy enough?
 
-Well, yes. [Go][1] is already a sexy programming language with many rich features, we are not really adding anything to the
-language, we are just trying to make [Go][1] code easier to understand, code and hack. We love [Go][1].
+Yes, [Go][1] is a really cool programming language, so cool it feels sexy to type. We are just trying to make [Go][1] code easier to
+understand, code and hack. In fact, we love [Go][1].
 
-## Making it even sexier
+## Out Goals
 
-That's the challenge and these are our goals:
+* Use Go's syntactic freedom to achieve great code expressiveness.
+* Wrap the complex stuff, making Go code simpler.
+* Making Go code easier.
 
-* Use Go custom types to achieve great code expressiveness.
-* Hide complexity into the wrappers, try to make coding Go simpler.
-* Get sexy.
-
-Please, read our [getting started](/getting-started) page to see a real world example.
+Please, read our [getting started](/getting-started) to continue the tour :).
 
 [1]: http://golang.org
 

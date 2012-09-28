@@ -1,15 +1,30 @@
-# Isn't Go sexy enough?
+# About Go and Gosexy
 
-Yes, [Go][1] is a really cool programming language, so cool it feels sexy to type. We are just trying to make [Go][1] code easier to
-understand, code and hack. In fact, we love [Go][1].
+[Go][1] is a (new) programming language full of **fresh ideas** that does not care about what your <span id="your-what">local Java guy</span> thinks is *right*.
 
-## Out Goals
+[Gosexy][2] aims to be a set of **wrappers** and **libraries** that use make use of [Go][1]'s rich features to make everyday's coding even easier.
 
-* Use Go's syntactic freedom to achieve great code expressiveness.
-* Wrap the complex stuff, making Go code simpler.
-* Making Go code easier.
+## Our goals
 
-Please, read our [getting started](/getting-started) to continue the tour :).
+* Use [Go][1]'s **syntactic freedom** to achieve great code expressiveness.
+* Wrap only the complex stuff, making Go code **simpler**.
+* Learn what the **Go community** is doing and make use of great Open Source projects.
+
+Got interested? please continue with our [getting started](/getting-started) page to learn more.
 
 [1]: http://golang.org
+[2]: http://gosexy.org
 
+<script type="text/javascript">
+  $(document).ready(
+    function() {
+      var choose = [
+        'mom',
+        'local Java guy',
+        'president',
+        'teacher'
+      ];
+      $('#your-what').text(choose[Math.floor(Math.random() * choose.length)]);
+    }
+  );
+</script>

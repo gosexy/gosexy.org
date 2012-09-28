@@ -5,8 +5,7 @@
   src: local('Inconsolata'), url('http://themes.googleusercontent.com/static/fonts/inconsolata/v5/BjAYBlHtW3CJxDcjzrnZCIbN6UDyHWBl620a-IRfuBk.woff') format('woff');
 }
 body {
-  /* From subtlepatterns.com */
-  background-image: url('images/old_mathematics.png?3');
+  background-image: url('images/old_mathematics.png');
   font-size: 12pt;
 }
 #container {
@@ -17,11 +16,12 @@ body {
   border-radius: 10px;
 }
 .hero-unit {
-  /* Photo: http://www.flickr.com/photos/dags1974/2443353018/in/photostream/ (Creative Commons) */
-  xbackground: #fff;
-  xbackground-image: url('images/hero-bg.jpg?3');
+  background: #fff;
+  background-image: url('images/connect.png');
   background-position: center;
-  xcolor: #fff;
+}
+.hero-unit img {
+  float: right;
 }
 code, pre {
   font-family: Inconsolata, monospace;

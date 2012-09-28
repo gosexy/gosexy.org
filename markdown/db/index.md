@@ -92,6 +92,31 @@ if err != nil {
 }
 ```
 
+### 4. Choosing a collection or a table
+
+```go
+people := sess.Collection("people")
+
+items := people.FindAll(
+  db.Cond { "name": "Peter" },
+)
+
+for _, item := range items {
+  fmt.Printf("Peter's last name: %s\n", item.GetString("last_name"))
+}
+```
+
+## Full code examples
+
+Of course we have:
+
+* [Example](https://github.com/gosexy/db/blob/master/mongo/examples/mongo.go) and [test file](https://github.com/gosexy/db/blob/master/mongo/mongo_test.go) for MongoDB.
+* [Test file](https://github.com/gosexy/db/blob/master/mysql/mysql_test.go) for MySQL
+* [Test file](https://github.com/gosexy/db/blob/master/postgresql/postgresql_test.go) for PostgreSQL
+* [Test file](https://github.com/gosexy/db/blob/master/sqlite/sqlite_test.go) for SQLite3
+
+Don't worry about SQL databases not having an example, just use the [MongoDB example](https://github.com/gosexy/db/blob/master/mongo/examples/mongo.go) and change the driver name.
+
 ## What's next?
 
 Now that you are connected to a database you can use [Database](/db/database) or [Collection](/db/collection) methods.

@@ -1,6 +1,6 @@
-# Get started with a real world example
+# A real world example
 
-I want to share a simple case that I run into while learning Go.
+I want to share a simple case that I run into while learning [Go][1].
 
 Let's try to use the [Go][1]'s ``encoding/json`` package to output some JSON to *stdout*.
 
@@ -108,9 +108,9 @@ people.Find(
 The above code does not depend on the database you are connecting to, in fact if you change the database wrapper eveything would work
 the same.
 
-We created wrappers four databases: MongoDB, MySQL, PostgreSQL and SQLite. Each one of them very different to
+We created wrappers for four databases: MongoDB, MySQL, PostgreSQL and SQLite. Each one of them very different to
 the other. And we're working on making them better.
 
-If you want to know more, please read our documentation on [gosexy/db](/db).
+Please continue reading our documentation on [gosexy/db](/db).
 
 [1]: http://golang.org

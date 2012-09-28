@@ -7,7 +7,9 @@ page:
     menu:
       - { text: "Getting started", url: "/getting-started" }
       - { text: "gosexy/db", url: "/db" }
-      #- { text: "Canvas", url: "/canvas" }
+      - { text: "gosexy/canvas", url: "/canvas" }
+      - { text: "gosexy/checksum", url: "/checksum" }
       - { text: "Source code", url: "https://github.com/gosexy" }
+      - { text: "&phi;", url: "http://xiam.menteslibres.org" }
     menu_pull:
       - { text: "Home", url: "/" }

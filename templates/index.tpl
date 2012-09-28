@@ -133,6 +133,7 @@
     {{ if .IsHome }}
 
       <div class="hero-unit">
+        <img src="/images/gophers.png" />
         <h1>github.com/gosexy</h1>
         <p>
           Syntactic sugar, libraries and wrappers for <a href="http://golang.org" target="_blank">Go</a>.

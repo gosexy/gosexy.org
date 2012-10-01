@@ -1,6 +1,6 @@
 # SQLite3 wrapper
 
-This driver is a wrapper of [sqlite3](https://github.com/mattn/go-sqlite3), a SQLite2 driver
+This driver is a wrapper of [sqlite3](https://github.com/mattn/go-sqlite3), a SQLite3 driver
 by [Yasuhiro Matsumoto](http://mattn.kaoriya.net/).
 
 In order to work with ``gosexy/db`` the original driver had to be

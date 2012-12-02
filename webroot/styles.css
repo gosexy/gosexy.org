@@ -17,7 +17,7 @@ body {
 }
 .hero-unit {
   background: #fff;
-  background-image: url('images/connect.png');
+  //background-image: url('images/connect.png');
   background-position: center;
 }
 .hero-unit img {
@@ -33,4 +33,10 @@ blockquote {
 }
 blockquote p {
   margin-bottom: 1.1em;
+}
+footer {
+  font-size: small;
+  padding-left: 30px;
+  padding-right: 30px;
+  color: #888;
 }

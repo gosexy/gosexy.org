@@ -222,6 +222,12 @@
 
     {{ end }}
 
+    <hr />
+
+    <footer>
+      A project by <a target="_blank" href="http://xiam.menteslibres.org">José Carlos Nieto</a>.
+    </footer>
+
     {{ if setting "page/body/scripts/footer" }}
       <script type="text/javascript">
         {{ setting "page/body/scripts/footer" | jstext }}

@@ -1,13 +1,15 @@
 # db.Collection
 
-Collections are sets of rows or documents, so they could be either MongoDB collections or a MySQL/PostgreSQL/SQLite tables.
+Collections are sets of rows or documents, so they could be either MongoDB *collections* or
+MySQL/PostgreSQL/SQLite *tables*.
 
-You can *create*, *read*, *update* or *delete* rows on any ``db.Collection``.
+The `db.Collection` methods allow you to *create*, *read*, *update* or *delete* rows on any
+``db.Collection`` and you can setup relations between collections.
 
-When you request data from a Collection with ``db.Collection.Find()`` or ``db.Collection.FindAll()``, a special object
-with structure ``db.Item`` is returned.
+When you request data from a collection with `db.Collection.Find()` or `db.Collection.FindAll()`, a special object
+with structure `db.Item` or `[]db.Item` is returned.
 
-Please read the docs on [db.Item](/db/item), [db.Database](/db/database) and [how to make queries](/db/queries) too.
+Please read the docs on [db.Item](/db/item), [db.Database](/db/database) and [how to make queries](/db/queries).
 
 ```go
 type Collection interface {
@@ -19,42 +21,68 @@ type Collection interface {
   FindAll(...interface{}) []Item
 
   Update(...interface{}) error
+	Exists() bool
 
   Remove(...interface{}) error
 
   Truncate() error
+  Name() string
 }
 ```
 
 ## db.Collection.Append(...interface{}) *([]db.Id, error)*
 
-Appends one or more items to the collection. Receives one or more ``db.Item`` objects as arguments.
+Appends one or more items to the collection. Receives one or more `db.Item` objects as arguments.
 
 ```go
-people.Append(
+# The `sess` variable is a db.Database object.
+# http://gosexy.org/db/database
+people, _ := sess.Collection("people")
+
+# This example inserts two items into the people collection.
+ids, err := people.Append(
   db.Item { "name": "Peter" },
   db.Item { "name": "John" },
 )
 ```
 
-The first returned argument is an array of IDs (`[]db.Id`) corresponding to each one of the inserted items.
+This method returns `([]db.Id, error)`. The `[]db.Id` part of the result is a list of the
+recently created IDs that correspond to each one of the appended items.
 
 ## db.Collection.Count(...interface{}) *(int, error)*
 
-Returns the number of total items matching the provided conditions.
+Returns the number of rows matching the provided conditions.
 
 ```go
-total := people.Count(db.Cond { "name": "Peter" })
+# The `sess` variable is a db.Database object.
+# http://gosexy.org/db/database
+people, _ := sess.Collection("people")
+
+# Gives the total number of rows in the `people` collection
+# that have a column named `name` with value `Peter`.
+total, err := people.Count(db.Cond { "name": "Peter" })
+
+if err == nil {
+  fmt.Printf("Found %d rows.\n", total)
+}
 ```
 
 ## db.Collection.Find(...interface{}) *db.Item*
 
-Return the first ``db.Item`` of the ``db.Collection`` that matches all the provided conditions. Ordering of the conditions
-does not matter, but you must know that they are evaluated from left to right and from top to bottom.
+Return the first `db.Item` of the `db.Collection` that matches all the provided conditions. You can
+provide as many conditions as you want, the order of the conditions does not matter but you must
+realize that they are evaluated from left to right and from top to bottom.
 
 ```go
-// ...WHERE name = "John" AND last_name = "Doe" AND (age = 15 OR age = 20)
-people.Find(
+# The `sess` variable is a db.Database object.
+# http://gosexy.org/db/database
+people, _ := sess.Collection("people")
+
+# The SQL equivalent would be:
+#   SELECT *
+#     FROM people
+#   WHERE name = "John" AND last_name = "Doe" AND (age = 15 OR age = 20);
+person := people.Find(
   db.Cond { "name": "John" },
   db.Cond { "last_name": "Doe" },
   db.Or {
@@ -62,38 +90,81 @@ people.Find(
     db.Cond { "age": 20 },
   },
 )
+
+if person != nil {
+  fmt.Printf("John's middle name is: %s\n", person.GetString("middle_name"))
+}
 ```
 
-Here's how you could use relations in your definition:
+### Using relations on Find()
+
+This is a feature that is unique to `Find()` and `FindAll()`, you can define relations
+between collections and use them to pull data from many collections at once.
 
 ```go
+# The `sess` variable is a db.Database object.
+# http://gosexy.org/db/database
+people, _ := sess.Collection("people")
+
+# Using relations in FindAll() would be the same as using relations
+# in Find().
+#
+# This example uses FindAll().
 people.FindAll(
-  // One-to-one relation with the table "places".
+  # `db.Relate` defines one-to-one relations.
+  # This is a relation with the table `places`.
   db.Relate{
+    # Defining a custom relation with name `lives_in`.
     "lives_in": db.On{
-      session.Collection("places"),
-      // Relates rows of the table "places" where place.code_id = collection.place_code_id.
+      # Collection must exists.
+      sess.ExistentCollection("places"),
+      # Here `{place_code_id}` means the `place_code_id` value
+      # of the corresponding item of the parent collection.
+      #
+      # The parent collection here is `people`, so an SQL
+      # equivalent would look like:
+      # ...WHERE place.code_id = people.place_code_id...
       db.Cond{"code_id": "{place_code_id}"},
     },
   },
+  # `db.RelateAll` defines one-to-many relations.
   db.RelateAll{
-    // One-to-many relation with the table "children".
+    # Defining a custom relation with name `has_children`.
     "has_children": db.On{
-      session.Collection("children"),
-      // Relates rows of the table "children" where children.parent_id = collection.id
+      # Collection must exists.
+      sess.ExistentCollection("children"),
+      # Here `{id}` means the `id` value of the corresponding
+      # item of the parent collection.
+      #
+      # The parent collection here is `people`, so an SQL
+      # equivalent would look like:
+      # ...WHERE children.parent_id = people.id...
       db.Cond{"parent_id": "{id}"},
     },
-    // One-to-many relation with the table "visits".
+    # Defining a custom relation with name `has_visited`.
     "has_visited": db.On{
-      session.Collection("visits"),
-      // Relates rows of the table "visits" where visits.person_id = collection.id
+      # Collection must exists.
+      sess.ExistentCollection("visits"),
+      # Here `{id}` means the `id` value of the corresponding
+      # item of the parent collection.
+      #
+      # The parent collection here is `people`, so an SQL
+      # equivalent would look like:
+      # ...WHERE visits.person_id = people.id...
       db.Cond{"person_id": "{id}"},
-      // A nested relation
+      # A nested one-to-one relation, please realize that relations
+      # can be defined only against the immediate parent collection.
       db.Relate{
-        // Relates rows of the table "places" with the "visits" table.
+        # Defining a custom relation with name `place`.
         "place": db.On{
-          session.Collection("places"),
-          // Cond places.id = visits.place_id
+          # Collection must exists.
+          sess.ExistentCollection("places"),
+          # Here `{place_id}` means the `place_id` value of the
+          # corresponding item of the parent collection.
+          #
+          # The parent collection here is `visits`, so an SQL
+          # equivalent would look like:
+          # ...WHERE places.id = visits.place_id...
           db.Cond{"id": "{place_id}"},
         },
       },

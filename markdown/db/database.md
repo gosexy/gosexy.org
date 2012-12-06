@@ -1,53 +1,88 @@
 # db.Database
 
-The ``db.Database`` type is an interface that has methods for common tasks on databases.
+The ``db.Database`` type is an interface that defines methods for common tasks on databases.
 
 ```go
 type Database interface {
-  Driver() interface{}
+	Driver() interface{}
 
-  Open() error
-  Close() error
+	Close() error
 
-  Collection(string) Collection
-  Collections() []string
+	Collection(string) (Collection, error)
+	ExistentCollection(string) Collection
+	Collections() []string
 
-  Use(string) error
-  Drop() error
+	Use(string) error
+	Drop() error
+
+	Name() string
 }
 ```
 
-## db.Database.Driver() *interface{}*
+## Setting up a db.Database object
 
-Returns the current wrapper's low-level driver as an ``interface{}``, so for any special query you can still request the driver
-to do it. For example, if you're using the ``github.com/gosexy/db/mongo`` wrapper this method will return a
-``*mgo.Session`` object, as the wrapper uses [mgo](http://labix.org/mgo) as it's low-level driver.
+Use `db.Open` to create and retrieve a `db.Database`.
 
-## db.Database.Open() *error*
+```go
+// Database settings
+settings := db.DataSource{
+  Host:     "localhost",
+  Database: "test",
+  User:     "myuser",
+  Password: "mypass",
+}
+
+// func db.Open(string, db.DataSource) -> (db.Database, error).
+sess, err := db.Open("postgresql", settings)
+
+if err != nil {
+  panic(err)
+}
+
+// func db.Database.Close() -> error
+defer sess.Close()
+```
+
+## Methods
+
+### db.Database.Driver() *interface{}*
+
+Returns the current wrapper's underlying driver as an `interface{}`, so you can still use it for any special
+request. For example, if you're using the `github.com/gosexy/db/mongo` wrapper this method will return a
+`*mgo.Session` object, as the wrapper uses the [mgo](http://labix.org/v2/mgo) driver.
+
+<!--
+### db.Database.Open() *error*
 
 Requests a connection to the database. Returns *error* if something goes wrong.
+-->
 
-## db.Database.Close() *error*
+### db.Database.Close() *error*
 
-Disconnects from the database session. Returns *error* if something goes wrong.
+Closes the connection to the database session. Returns *error* if something goes wrong.
 
-## db.Database.Collection(name string) *db.Collection*
+### db.Database.Collection(name string) *(db.Collection, error)*
 
-Returns a ``db.Collection``, collections are sets of rows or documents, so this could be either a MongoDB collection or a
-MySQL/PostgreSQL/SQLite table.
+Returns a `db.Collection` and an `error`. Collections are sets of rows or documents, so this value
+could be either a MongoDB collection or a MySQL/PostgreSQL/SQLite table. `error` would be `nil`
+if the table does not exists.
 
-You may want to read [db.Collection](/db/collection) methods to know how to *create*, *read*, *update* or *delete* rows on
-any given a collection.
+### db.Database.ExistentCollection(name string) *(db.Collection)*
 
-## db.Database.Collections() *[]string*
+Tries to return a `db.Collection` that must exist, panics if such collection does not exists.
 
-Returns the names of all the collections in the current database.
+### db.Database.Collections() *[]string*
 
-## db.Database.Use(name string) *error*
+Returns the names of all collections in the current database.
 
-Makes the database session change its database source. Returns *error* if it fails.
+### db.Database.Use(name string) *error*
 
-## db.Database.Drop() *error*
+Changes the source database during connection. Returns *error* if the operation fails.
 
-Erases the entire database and all the collections. Returns *error* if it fails.
+### db.Database.Drop() *error*
 
+Deletes the entire database and all its collections. Returns *error* if it fails.
+
+### db.Database.Name() *string*
+
+Returns the active database name.

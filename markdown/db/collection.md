@@ -30,7 +30,43 @@ type Collection interface {
 }
 ```
 
-## db.Collection.Append(...interface{}) *([]db.Id, error)*
+## Creating a db.Collection object
+
+Use `db.Open` to create and retrieve a `db.Database`.
+
+```go
+// Database settings
+settings := db.DataSource{
+  Host:     "localhost",
+  Database: "test",
+  User:     "myuser",
+  Password: "mypass",
+}
+
+// func db.Open(string, db.DataSource) -> (db.Database, error).
+sess, err := db.Open("postgresql", settings)
+
+if err != nil {
+  panic(err)
+}
+
+// func db.Database.Close() -> error
+defer sess.Close()
+```
+
+Point a variable to a collection using the `db.Database.Collection()` or `db.Database.ExistentCollection()` methods.
+
+```go
+# Collection could not exists, an error would be returned.
+people, err := sess.Collection("people")
+
+# Collection must exists, it will panic otherwise.
+users := sess.ExistentCollection("users")
+```
+
+## Methods
+
+### db.Collection.Append(...interface{}) *([]db.Id, error)*
 
 Appends one or more items to the collection. Receives one or more `db.Item` objects as arguments.
 
@@ -49,7 +85,7 @@ ids, err := people.Append(
 This method returns `([]db.Id, error)`. The `[]db.Id` part of the result is a list of the
 recently created IDs that correspond to each one of the appended items.
 
-## db.Collection.Count(...interface{}) *(int, error)*
+### db.Collection.Count(...interface{}) *(int, error)*
 
 Returns the number of rows matching the provided conditions.
 
@@ -67,7 +103,7 @@ if err == nil {
 }
 ```
 
-## db.Collection.Find(...interface{}) *db.Item*
+### db.Collection.Find(...interface{}) *db.Item*
 
 Return the first `db.Item` of the `db.Collection` that matches all the provided conditions. You can
 provide as many conditions as you want, the order of the conditions does not matter but you must
@@ -96,7 +132,117 @@ if person != nil {
 }
 ```
 
-### Using relations on Find()
+### db.Collection.FindAll(...interface{}) *[]db.Item*
+
+Returns a list of all the items of the collection that match the provided conditions. See ``db.Collection.Find()``.
+
+Be aware that there are some parameters that are unique to `db.Collection.FindAll()` but can't be used with `db.Collection.Find()`,
+like `db.Limit(n)`.
+
+```go
+# The `sess` variable is a db.Database object.
+# http://gosexy.org/db/database
+people, _ := sess.Collection("people")
+
+# The SQL equivalent would be:
+#   SELECT *
+#     FROM people
+#   WHERE last_name = "Smith"
+#   LIMIT 10;
+results := people.Find(
+  db.Cond { "last_name": "Smith" },
+  db.Limit(10),
+)
+
+# Looping over `results` (type `[]db.Item`).
+for _, person := range results {
+  # Each `person` is a `db.Item`
+  fmt.Printf("Name: %s\n", person.GetString("name"))
+}
+```
+
+### db.Collection.Update(...interface{}) *error*
+
+Modifies all the items in the collection that match all the provided conditions.
+
+You can specify the modification type by define `db.Set`, `db.Modify` or `db.Upsert`.
+
+At the time of this writing `db.Modify` and `db.Upsert` are only available for the
+`mongo` wrapper.
+
+```go
+# The `sess` variable is a db.Database object.
+# http://gosexy.org/db/database
+people, _ := sess.Collection("people")
+
+# The SQL equivalent would be:
+#   UPDATE people
+#     SET name = 'Joseph'
+#   WHERE name = 'José';
+people.Update(
+  db.Cond { "name": "José" },
+  db.Set { "name": "Joseph"},
+)
+
+# This is an operation that is currently accepted
+# by the `mongo` driver only.
+# Modify row according to a formula.
+people.Update(
+  db.Cond { "times $gt": "10" },
+  db.Modify { "$inc": { "times": 1 } },
+)
+
+# This is an operation that is currently accepted
+# by the `mongo` driver only.
+# Insert if no match.
+people.Update(
+  db.Cond { "name": "Roberto" },
+  db.Upsert { "name": "Robert"},
+)
+```
+
+### db.Collection.Exists() *bool*
+
+Returns `true` if the collection exists, `false` otherwise.
+
+### db.Collection.Remove(...interface{}) *error*
+
+Deletes all the items of the collection that match the provided conditions.
+
+```go
+# The `sess` variable is a db.Database object.
+# http://gosexy.org/db/database
+people, _ := sess.Collection("people")
+
+# The SQL equivalent would be:
+#   DELETE FROM people
+#   WHERE name = 'Peter' AND last_name = 'Parker';
+people.Remove(
+  db.Cond { "name": "Peter" },
+  db.Cond { "last_name": "Parker" },
+)
+```
+
+### db.Collection.Truncate() *error*
+
+Deletes all items of the collection. For the `mongo` driver
+this means deleting the whole collection.
+
+```go
+# The `sess` variable is a db.Database object.
+# http://gosexy.org/db/database
+people, _ := sess.Collection("people")
+
+# The SQL equivalent would be:
+# TRUNCATE TABLE people;
+people.Truncate()
+```
+
+### db.Collection.Name() *string*
+
+Returns the name of the collection or table.
+
+## Relations between collections
 
 This is a feature that is unique to `Find()` and `FindAll()`, you can define relations
 between collections and use them to pull data from many collections at once.
@@ -171,65 +317,4 @@ people.FindAll(
     },
   },
 )
-```
-
-## db.Collection.FindAll(...interface{}) *[]db.Item*
-
-Returns all the items (``[]db.Item``) of the collection that match all the provided conditions. See ``db.Collection.Find()``.
-
-Be aware that there are some parameters that you can pass to ``db.Collection.FindAll()`` but not to ``db.Collection.Find()``,
-like ``db.Limit(n)``, as ``db.Collection.Find()`` has a fixed ``db.Limit(1)``.
-
-```go
-// Give me the the first 10 rows with last_name = "Smith"
-people.Find(
-  db.Cond { "last_name": "Smith" },
-  db.Limit(10),
-)
-```
-
-## db.Collection.Update(...interface{}) *error*
-
-Updates all the items of the collection that match all the provided conditions.
-
-You can specify the modification type by using ``db.Set``, ``db.Modify`` or ``db.Upsert``. At the time of this writing
-``db.Modify`` and ``db.Upsert`` are only available for ``mongo.Session``.
-
-```go
-// Example of assigning field values with Set:
-people.Update(
-  db.Cond { "name": "José" },
-  db.Set { "name": "Joseph"},
-)
-
-// Example of custom modification with db.Modify (for mongo.Session):
-people.Update(
-  db.Cond { "times <": "10" },
-  db.Modify { "$inc": { "times": 1 } },
-)
-
-// Example of inserting if none matches with db.Upsert (for mongo.Session):
-people.Update(
-  db.Cond { "name": "Roberto" },
-  db.Upsert { "name": "Robert"},
-)
-```
-
-## db.Collection.Remove(...interface{}) *error*
-
-Deletes all the items of the collection that match the provided conditions.
-
-```go
-people.Remove(
-  db.Cond { "name": "Peter" },
-  db.Cond { "last_name": "Parker" },
-)
-```
-
-## db.Collection.Truncate() *error*
-
-Deletes the whole collection.
-
-```go
-people.Truncate()
 ```

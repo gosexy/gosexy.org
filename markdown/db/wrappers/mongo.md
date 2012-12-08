@@ -2,30 +2,25 @@
 
 This package is a wrapper of [mgo](http://labix.org/mgo), a MongoDB driver by [Gustavo Niemeyer](http://labyx.org).
 
-## Driver requirements
+## Installation
+
+### Driver pre-requisites
 
 The [bazaar](http://bazaar.canonical.com/en/) version control system is required
-to install ``mgo``.
-
-If you're using ``brew`` and OSX, you can install it like this:
+to install `mgo`.
 
 ```sh
+# OSX
 % brew install bzr
-```
 
-On ArchLinux you could use
+# Debian based
+% sudo aptitude install bzr
 
-```sh
+# ArchLinux
 % sudo pacman -S bzr
 ```
 
-And on Debian based distros
-
-```sh
-% sudo aptitude install bzr
-```
-
-## Installing the wrapper
+### Getting the wrapper
 
 ```sh
 % go get github.com/gosexy/db/mongo
@@ -33,26 +28,29 @@ And on Debian based distros
 
 ## Usage
 
+Import the `gosexy/db` and `github.com/gosexy/db/mongo` packages.
+
 ```go
 import (
   "github.com/gosexy/db"
-  "github.com/gosexy/db/mongo"
+	# Note that we are importing to the blank namespace.
+  _ "github.com/gosexy/db/mongo"
 )
 ```
 
-## Connecting to a MongoDB database
+### Connecting to a MongoDB database
 
 ```go
-sess := mongo.Session(db.DataSource{Host: "127.0.0.1"})
+sess, err := db.Open("mongo", db.DataSource{Host: "127.0.0.1", ...})
 
-err := sess.Open()
-
-if err == nil {
-  defer sess.Close()
+if err != nil {
+	panic(err)
 }
+
+defer sess.Close()
 ```
 
-## Making queries to the database
+### Querying the database
 
-Check the [gosexy/db](/db) documentation to know how to make queries to the database.
+You may check out the [gosexy/db documentation](/db).
 

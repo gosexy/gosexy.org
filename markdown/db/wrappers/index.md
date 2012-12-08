@@ -1,8 +1,10 @@
 # Database wrappers
 
-Wrappers are packages that wrap the functions of a database driver.
+*Wrappers* are packages that wrap the functions of a *database driver*.
 
-There are four avaialable wrappers to time:
+A *database driver* does the low level communication with a database server.
+
+## Available drivers on gosexy/db
 
 * **[mongo](/db/wrappers/mongo)** for [MongoDB](http://mongodb.org), based on [mgo](http://labix.org/mgo) by [Gustavo Niemeyer](http://labyx.org).
 * **[mysql](/db/wrappers/mysql)** for [MySQL](http://mysql.org), based on [go-mysql-driver](http://code.google.com/p/go-mysql-driver/) by [Julien Schmidt](http://www.julienschmidt.com/).

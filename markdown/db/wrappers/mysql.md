@@ -3,30 +3,25 @@
 This driver is a wrapper of [go-mysql-driver](http://code.google.com/p/go-mysql-driver/), a MySQL
 driver by [Julien Schmidt](http://www.julienschmidt.com/).
 
-## Driver requirements
+## Installation
+
+### Driver pre-requisites
 
 The [mercurial](http://mercurial.selenic.com/) version control system is required to install
-``go-mysql-driver``.
-
-If you're using ``brew`` and OSX, you can install it like this
+`go-mysql-driver`.
 
 ```sh
+# OSX
 % brew install hg
-```
 
-On ArchLinux you could use
+# Debian based
+% sudo aptitude install mercurial
 
-```sh
+# ArchLinux
 % sudo pacman -S mercurial
 ```
 
-And on Debian based distros
-
-```sh
-% sudo aptitude install mercurial
-```
-
-## Installing the wrapper
+### Getting the wrapper
 
 ```sh
 % go get github.com/gosexy/db/mysql
@@ -34,26 +29,29 @@ And on Debian based distros
 
 ## Usage
 
+Import the `gosexy/db` and `github.com/gosexy/db/mysql` packages.
+
 ```go
 import (
   "github.com/gosexy/db"
-  "github.com/gosexy/db/mysql"
+	# Note that we are importing to the blank namespace.
+  _ "github.com/gosexy/db/mysql"
 )
 ```
 
-## Connecting to a MySQL database
+### Connecting to a MySQL database
 
 ```go
-sess := mysql.Session(db.DataSource{Host: "127.0.0.1"})
+sess, err := db.Open("mysql", db.DataSource{Host: "127.0.0.1", ...})
 
-err := sess.Open()
-
-if err == nil {
-  defer sess.Close()
+if err != nil {
+	panic(err)
 }
+
+defer sess.Close()
 ```
 
-## Making queries to the database
+### Querying the database
 
-Check the [gosexy/db](/db) documentation to know how to make queries to the database.
+You may check out the [gosexy/db documentation](/db).
 

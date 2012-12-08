@@ -3,35 +3,30 @@
 This driver is a wrapper of [sqlite3](https://github.com/mattn/go-sqlite3), a SQLite3 driver
 by [Yasuhiro Matsumoto](http://mattn.kaoriya.net/).
 
-In order to work with ``gosexy/db`` the original driver had to be
+In order to work with `gosexy/db` the original driver had to be
 [forked][1] as the changes made to it are incompatible with some of [sqlite3][1]'s own features.
 
-## Driver requeriments
+## Installation
 
-The sqlite3 driver uses cgo, and it requires ``pkg-config`` and the sqlite3 header files in order to be installed.
+### Driver pre-requisites
 
-If you're using ``brew`` and OSX, you can install them like this
+The sqlite3 driver uses cgo, it requires `pkg-config` and the sqlite3 header files in order to be installed.
 
 ```sh
+# OSX
 % brew install pkg-config
 % brew install sqlite3
-```
 
-On ArchLinux you could use
-
-```sh
+# ArchLinux
 % sudo pacman -S pkg-config
 % sudo pacman -S sqlite3
-```
 
-And on Debian based distros
-
-```sh
+# SQLite3
 % sudo aptitude install pkg-config
 % sudo aptitude install libsqlite3-dev
 ```
 
-## Installing the wrapper
+### Getting the wrapper
 
 ```sh
 % go get github.com/gosexy/db/sqlite
@@ -39,27 +34,30 @@ And on Debian based distros
 
 ## Usage
 
+Import the `gosexy/db` and `github.com/gosexy/db/sqlite` packages.
+
 ```go
 import (
   "github.com/gosexy/db"
-  "github.com/gosexy/db/sqlite"
+	# Note that we are importing to the blank namespace.
+  _ "github.com/gosexy/db/sqlite"
 )
 ```
 
-## Connecting to a SQLite3 database
+### Connecting to a SQLite3 database
 
 ```go
-sess := sqlite.Session(db.DataSource{Database: "/path/to/sqlite3.db"})
+sess, err := db.Open("mongo", db.DataSource{Database: "/path/to/sqlite3.db", ...})
 
-err := sess.Open()
-
-if err == nil {
-  defer sess.Close()
+if err != nil {
+	panic(err)
 }
+
+defer sess.Close()
 ```
 
-## Making queries to the database
+### Querying the database
 
-Check the [gosexy/db](/db) documentation to know how to make queries to the database.
+You may check out the [gosexy/db documentation](/db).
 
 [1]: https://github.com/xiam/gosqlite3

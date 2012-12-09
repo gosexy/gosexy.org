@@ -12,7 +12,7 @@ You can use these special types as arguments on `db.Collection` [methods](/db/co
 ### db.Cond
 
 ```go
-# package db
+// package db
 type Cond map[string]interface{}
 ```
 
@@ -24,19 +24,19 @@ use ``"age $lt"`` or ``"age $gt"`` while in SQL you could use ``"age >="`` or ``
 names.
 
 ```go
-# Means the condition is that the `age` field must be equal to 18.
+// Means the condition is that the `age` field must be equal to 18.
 db.Cond { "age": 18 }
 
-# `$lt` is an operator exclusive for the MongoDB database, if
-# you're using MongoDB means that you want the `age` field to be
-# lower than 18.
-db.Cond { "age $lt": 18 } # Note the space between name and operator
+// `$lt` is an operator exclusive for the MongoDB database, if
+// you're using MongoDB means that you want the `age` field to be
+// lower than 18.
+db.Cond { "age $lt": 18 } // Note the space between name and operator
 
-# `>=` is a SQL operator, if you're using SQL means that you want
-# the `age` field to be greater than or equal to 18.
-db.Cond { "age >=": 18 } # Note the space between name and operator
+// `>=` is a SQL operator, if you're using SQL means that you want
+// the `age` field to be greater than or equal to 18.
+db.Cond { "age >=": 18 } // Note the space between name and operator
 
-# A full example
+// A full example
 john := people.Find(
 	db.Cond({"name": "john"})
 )
@@ -53,14 +53,14 @@ You can use one or many `db.Cond` as arguments to:
 ### db.And
 
 ```go
-# package db
+// package db
 type And []interface{}
 ```
 
 Relates `db.Cond`, `db.Or` and other `db.And` types with a logical conjuction.
 
 ```go
-# Explicitly relating two `db.Cond` with a conjuction.
+// Explicitly relating two `db.Cond` with a conjuction.
 peterParkers := people.FindAll(
 	db.And (
 		db.Cond { "name": "Peter" },
@@ -73,7 +73,8 @@ Please note that `db.And` is the default relation for multiple `db.Cond` that do
 an explicit conjuction or disjunction.
 
 ```go
-# This would be equivalent to the previous example, as `db.And` is the default relation.
+// This would be equivalent to the previous example, as
+// `db.And` is the default relation.
 peterParkers := people.FindAll(
 	//db.And (
 		db.Cond { "name": "Peter" },
@@ -93,14 +94,14 @@ You can use one or many `db.And` as arguments to:
 ### db.Or
 
 ```go
-# package db
+// package db
 type Or []interface{}
 ```
 
 Relates `db.Cond`, `db.And` and other `db.Or` types under a logical disjunction.
 
 ```go
-# Relating two `db.Cond` under OR.
+// Relating two `db.Cond` under OR.
 people.Find(
 	db.Or (
 		db.Cond { "hero_name": "Spiderman" },
@@ -120,7 +121,7 @@ You can use one or many `db.Or` as arguments to:
 ### db.Fields
 
 ```go
-# package db
+// package db
 type Fields []string
 ```
 
@@ -142,7 +143,7 @@ You can use `db.Fields` as argument to:
 ### db.Sort
 
 ```go
-# package db
+// package db
 type Sort map[string]interface{}
 ```
 
@@ -170,7 +171,7 @@ It is illegal to specify more than on `db.Sort` in the same query.
 ### db.Limit
 
 ```go
-# package db
+// package db
 type Limit uint
 ```
 
@@ -191,7 +192,7 @@ You can use `db.Limit` as argument to:
 ### db.Offset
 
 ```go
-# package db
+// package db
 type Offset uint
 ```
 
@@ -211,7 +212,7 @@ You can use `db.Offset` as argument to:
 ### db.Set
 
 ```go
-# package db
+// package db
 type Set map[string]interface{}
 ```
 
@@ -232,7 +233,7 @@ You can use `db.Set` with `db.Collection.Update()`.
 ### db.Relate
 
 ```go
-# package db
+// package db
 type Relate map[string] On
 ```
 
@@ -264,7 +265,7 @@ You can use `db.Relate` as argument to:
 ### db.RelateAll
 
 ```go
-# package db
+// package db
 type RelateAll map[string]On
 ```
 
@@ -292,7 +293,7 @@ You can use `db.RelateAll` as argument to:
 ### db.On
 
 ```go
-# package db
+// package db
 type On []interface{}
 ```
 
@@ -303,10 +304,10 @@ the name of field on the external collection plus the name of the referred paren
 people.Find(
 	db.Relate {
 		"relationName": db.On {
-			# Collection must exists.
+			// Collection must exists.
 			db.ExistentCollection("externalCollection"),
-			# Relation exists where the "external_column" field is equal to
-			# the parent's "parent_value".
+			// Relation exists where the "external_column" field is equal to
+			// the parent's "parent_value".
 			Cond { "external_column": "{parent_column}" },
 		},
 	},
@@ -318,7 +319,7 @@ You can use `db.On` only as value for `db.Relate` and `db.RelateAll` keys.
 ### db.Upsert
 
 ```go
-# package db
+// package db
 type Upsert map[string]interface{}
 ```
 
@@ -340,7 +341,7 @@ At this time only available for the [mongo](/db/drivers/mongo) driver.
 ### db.Modify
 
 ```go
-# package db
+// package db
 type Modify map[string]interface{}
 ```
 
@@ -348,13 +349,13 @@ Determines how the matched item or items are going to change in an update statem
 
 ```go
 coolLanguages.Update(
-	# how?
+	// how?
 	db.Modify {
 		"$inc": {
 			"counter": 1,
 		},
 	},
-	# where?
+	// where?
 	db.Cond({"name": "golang"}),
 )
 ```

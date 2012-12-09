@@ -14,7 +14,7 @@ it is exposed as an `interface{}`.
 
 Use `go get` to download and install `gosexy/db`.
 
-```sh
+```bash
 % go get github.com/gosexy/db
 ```
 

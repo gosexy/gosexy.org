@@ -5,7 +5,7 @@ page:
   body:
     title: "gosexy, Go tools and wrappers"
     menu:
-      - { text: "Getting started", url: "/getting-started" }
+      - { text: "Get started", url: "/getting-started" }
       - { text: "gosexy/db", url: "/db" }
       - { text: "gosexy/canvas", url: "/canvas" }
       - { text: "gosexy/checksum", url: "/checksum" }

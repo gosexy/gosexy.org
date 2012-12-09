@@ -39,23 +39,23 @@ defer sess.Close()
 Point a variable to a collection using the `db.Database.Collection()` or `db.Database.ExistentCollection()` methods.
 
 ```go
-# Collection could not exists, an error would be returned.
+// Collection could not exists, an error would be returned.
 people, err := sess.Collection("people")
 
-# Collection must exists, it will panic otherwise.
+// Collection must exists, it will panic otherwise.
 users := sess.ExistentCollection("users")
 ```
 
 Finally, use `db.Collection.Find()` or `db.Collection.FindAll()` to fetch one or many items.
 
 ```go
-# db.Collection.Find(...interface{}) *db.Item*
+// db.Collection.Find(...interface{}) *db.Item*
 john := users.Find(db.Cond{"name": "john"})
 if john != nil {
 	fmt.Println("John was found.")
 }
 
-# db.Collection.FindAll(...interface{}) *[]db.Item*
+// db.Collection.FindAll(...interface{}) *[]db.Item*
 smiths := users.Find(db.Cond{"last_name": "smith"})
 for _, smith := range smiths {
 	fmt.Printf("Hi, %s %s.\n", smith.GetString("name"), smith.GetString("last_name"))

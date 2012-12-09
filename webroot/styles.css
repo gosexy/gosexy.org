@@ -1,12 +1,7 @@
-@font-face {
-  font-family: 'Inconsolata';
-  font-style: normal;
-  font-weight: normal;
-  src: local('Inconsolata'), url('http://themes.googleusercontent.com/static/fonts/inconsolata/v5/BjAYBlHtW3CJxDcjzrnZCIbN6UDyHWBl620a-IRfuBk.woff') format('woff');
-}
 body {
   background-image: url('images/old_mathematics.png');
-  font-size: 12pt;
+  font-size: 1.15em;
+  font-family: "PT Serif","Georgia","Helvetica Neue",Arial,sans-serif;
 }
 #container {
   background-color: #fff;
@@ -14,6 +9,15 @@ body {
   margin-bottom: 20px;
   padding-bottom: 20px;
   border-radius: 10px;
+}
+.container-fluid {
+  line-height: 1.5em;
+}
+.container-fluid p {
+  margin-bottom: 1.5em;
+}
+.container-fluid ul li {
+  line-height: 1.5em;
 }
 .hero-unit {
   background: #fff;
@@ -23,8 +27,11 @@ body {
 .hero-unit img {
   float: right;
 }
+.navbar, footer, button, .hero-unit, .menu {
+  font-family: 'PT Sans';
+}
 code, pre {
-  font-family: Inconsolata, monospace;
+  font-family: "Source Code Pro", "Inconsolata", monospace;
   font-size: 12pt;
 }
 blockquote {

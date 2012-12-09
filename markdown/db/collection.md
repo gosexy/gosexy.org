@@ -21,7 +21,7 @@ type Collection interface {
   FindAll(...interface{}) []Item
 
   Update(...interface{}) error
-	Exists() bool
+  Exists() bool
 
   Remove(...interface{}) error
 
@@ -57,10 +57,10 @@ defer sess.Close()
 Point a variable to a collection using the `db.Database.Collection()` or `db.Database.ExistentCollection()` methods.
 
 ```go
-# Collection could not exists, an error would be returned.
+// Collection could not exists, an error would be returned.
 people, err := sess.Collection("people")
 
-# Collection must exists, it will panic otherwise.
+// Collection must exists, it will panic otherwise.
 users := sess.ExistentCollection("users")
 ```
 
@@ -71,11 +71,11 @@ users := sess.ExistentCollection("users")
 Appends one or more items to the collection. Receives one or more `db.Item` objects as arguments.
 
 ```go
-# The `sess` variable is a db.Database object.
-# http://gosexy.org/db/database
+// The `sess` variable is a db.Database object.
+// http://gosexy.org/db/database
 people, _ := sess.Collection("people")
 
-# This example inserts two items into the people collection.
+// This example inserts two items into the people collection.
 ids, err := people.Append(
   db.Item { "name": "Peter" },
   db.Item { "name": "John" },
@@ -90,12 +90,12 @@ recently created IDs that correspond to each one of the appended items.
 Returns the number of rows matching the provided conditions.
 
 ```go
-# The `sess` variable is a db.Database object.
-# http://gosexy.org/db/database
+// The `sess` variable is a db.Database object.
+// http://gosexy.org/db/database
 people, _ := sess.Collection("people")
 
-# Gives the total number of rows in the `people` collection
-# that have a column named `name` with value `Peter`.
+// Gives the total number of rows in the `people` collection
+// that have a column named `name` with value `Peter`.
 total, err := people.Count(db.Cond { "name": "Peter" })
 
 if err == nil {
@@ -110,14 +110,14 @@ provide as many conditions as you want, the order of the conditions does not mat
 realize that they are evaluated from left to right and from top to bottom.
 
 ```go
-# The `sess` variable is a db.Database object.
-# http://gosexy.org/db/database
+// The `sess` variable is a db.Database object.
+// http://gosexy.org/db/database
 people, _ := sess.Collection("people")
 
-# The SQL equivalent would be:
-#   SELECT *
-#     FROM people
-#   WHERE name = "John" AND last_name = "Doe" AND (age = 15 OR age = 20);
+// The SQL equivalent would be:
+//   SELECT *
+//     FROM people
+//   WHERE name = "John" AND last_name = "Doe" AND (age = 15 OR age = 20);
 person := people.Find(
   db.Cond { "name": "John" },
   db.Cond { "last_name": "Doe" },
@@ -140,21 +140,21 @@ Be aware that there are some parameters that are unique to `db.Collection.FindAl
 like `db.Limit(n)`.
 
 ```go
-# The `sess` variable is a db.Database object.
-# http://gosexy.org/db/database
+// The `sess` variable is a db.Database object.
+// http://gosexy.org/db/database
 people, _ := sess.Collection("people")
 
-# The SQL equivalent would be:
-#   SELECT *
-#     FROM people
-#   WHERE last_name = "Smith"
-#   LIMIT 10;
+// The SQL equivalent would be:
+//   SELECT *
+//     FROM people
+//   WHERE last_name = "Smith"
+//   LIMIT 10;
 results := people.Find(
   db.Cond { "last_name": "Smith" },
   db.Limit(10),
 )
 
-# Looping over `results` (type `[]db.Item`).
+// Looping over `results` (type `[]db.Item`).
 for _, person := range results {
   # Each `person` is a `db.Item`
   fmt.Printf("Name: %s\n", person.GetString("name"))
@@ -171,30 +171,30 @@ At the time of this writing `db.Modify` and `db.Upsert` are only available for t
 `mongo` wrapper.
 
 ```go
-# The `sess` variable is a db.Database object.
-# http://gosexy.org/db/database
+// The `sess` variable is a db.Database object.
+// http://gosexy.org/db/database
 people, _ := sess.Collection("people")
 
-# The SQL equivalent would be:
-#   UPDATE people
-#     SET name = 'Joseph'
-#   WHERE name = 'José';
+// The SQL equivalent would be:
+//   UPDATE people
+//     SET name = 'Joseph'
+//   WHERE name = 'José';
 people.Update(
   db.Cond { "name": "José" },
   db.Set { "name": "Joseph"},
 )
 
-# This is an operation that is currently accepted
-# by the `mongo` driver only.
-# Modify row according to a formula.
+// This is an operation that is currently accepted
+// by the `mongo` driver only.
+// Modify row according to a formula.
 people.Update(
   db.Cond { "times $gt": "10" },
   db.Modify { "$inc": { "times": 1 } },
 )
 
-# This is an operation that is currently accepted
-# by the `mongo` driver only.
-# Insert if no match.
+// This is an operation that is currently accepted
+// by the `mongo` driver only.
+// Insert if no match.
 people.Update(
   db.Cond { "name": "Roberto" },
   db.Upsert { "name": "Robert"},
@@ -210,13 +210,13 @@ Returns `true` if the collection exists, `false` otherwise.
 Deletes all the items of the collection that match the provided conditions.
 
 ```go
-# The `sess` variable is a db.Database object.
-# http://gosexy.org/db/database
+// The `sess` variable is a db.Database object.
+// http://gosexy.org/db/database
 people, _ := sess.Collection("people")
 
-# The SQL equivalent would be:
-#   DELETE FROM people
-#   WHERE name = 'Peter' AND last_name = 'Parker';
+// The SQL equivalent would be:
+//   DELETE FROM people
+//   WHERE name = 'Peter' AND last_name = 'Parker';
 people.Remove(
   db.Cond { "name": "Peter" },
   db.Cond { "last_name": "Parker" },
@@ -230,11 +230,11 @@ this means deleting the whole collection.
 
 ```go
 # The `sess` variable is a db.Database object.
-# http://gosexy.org/db/database
+// http://gosexy.org/db/database
 people, _ := sess.Collection("people")
 
-# The SQL equivalent would be:
-# TRUNCATE TABLE people;
+// The SQL equivalent would be:
+// TRUNCATE TABLE people;
 people.Truncate()
 ```
 
@@ -248,69 +248,69 @@ This is a feature that is unique to `Find()` and `FindAll()`, you can define rel
 between collections and use them to pull data from many collections at once.
 
 ```go
-# The `sess` variable is a db.Database object.
-# http://gosexy.org/db/database
+// The `sess` variable is a db.Database object.
+// http://gosexy.org/db/database
 people, _ := sess.Collection("people")
 
-# Using relations in FindAll() would be the same as using relations
-# in Find().
-#
-# This example uses FindAll().
+// Using relations in FindAll() would be the same as using relations
+// in Find().
+//
+// This example uses FindAll().
 people.FindAll(
-  # `db.Relate` defines one-to-one relations.
-  # This is a relation with the table `places`.
+  // `db.Relate` defines one-to-one relations.
+  // This is a relation with the table `places`.
   db.Relate{
-    # Defining a custom relation with name `lives_in`.
+    // Defining a custom relation with name `lives_in`.
     "lives_in": db.On{
-      # Collection must exists.
+      // Collection must exists.
       sess.ExistentCollection("places"),
-      # Here `{place_code_id}` means the `place_code_id` value
-      # of the corresponding item of the parent collection.
-      #
-      # The parent collection here is `people`, so an SQL
-      # equivalent would look like:
-      # ...WHERE place.code_id = people.place_code_id...
+      // Here `{place_code_id}` means the `place_code_id` value
+      // of the corresponding item of the parent collection.
+      //
+      // The parent collection here is `people`, so an SQL
+      // equivalent would look like:
+      // ...WHERE place.code_id = people.place_code_id...
       db.Cond{"code_id": "{place_code_id}"},
     },
   },
-  # `db.RelateAll` defines one-to-many relations.
+  // `db.RelateAll` defines one-to-many relations.
   db.RelateAll{
-    # Defining a custom relation with name `has_children`.
+    // Defining a custom relation with name `has_children`.
     "has_children": db.On{
-      # Collection must exists.
+      // Collection must exists.
       sess.ExistentCollection("children"),
-      # Here `{id}` means the `id` value of the corresponding
-      # item of the parent collection.
-      #
-      # The parent collection here is `people`, so an SQL
-      # equivalent would look like:
-      # ...WHERE children.parent_id = people.id...
+      // Here `{id}` means the `id` value of the corresponding
+      // item of the parent collection.
+      //
+      // The parent collection here is `people`, so an SQL
+      // equivalent would look like:
+      // ...WHERE children.parent_id = people.id...
       db.Cond{"parent_id": "{id}"},
     },
-    # Defining a custom relation with name `has_visited`.
+    // Defining a custom relation with name `has_visited`.
     "has_visited": db.On{
-      # Collection must exists.
+      // Collection must exists.
       sess.ExistentCollection("visits"),
-      # Here `{id}` means the `id` value of the corresponding
-      # item of the parent collection.
-      #
-      # The parent collection here is `people`, so an SQL
-      # equivalent would look like:
-      # ...WHERE visits.person_id = people.id...
+      // Here `{id}` means the `id` value of the corresponding
+      // item of the parent collection.
+      //
+      // The parent collection here is `people`, so an SQL
+      // equivalent would look like:
+      // ...WHERE visits.person_id = people.id...
       db.Cond{"person_id": "{id}"},
-      # A nested one-to-one relation, please realize that relations
-      # can be defined only against the immediate parent collection.
+      // A nested one-to-one relation, please realize that relations
+      // can be defined only against the immediate parent collection.
       db.Relate{
-        # Defining a custom relation with name `place`.
+        // Defining a custom relation with name `place`.
         "place": db.On{
-          # Collection must exists.
+          // Collection must exists.
           sess.ExistentCollection("places"),
-          # Here `{place_id}` means the `place_id` value of the
-          # corresponding item of the parent collection.
-          #
-          # The parent collection here is `visits`, so an SQL
-          # equivalent would look like:
-          # ...WHERE places.id = visits.place_id...
+          // Here `{place_id}` means the `place_id` value of the
+          // corresponding item of the parent collection.
+          //
+          // The parent collection here is `visits`, so an SQL
+          // equivalent would look like:
+          // ...WHERE places.id = visits.place_id...
           db.Cond{"id": "{place_id}"},
         },
       },

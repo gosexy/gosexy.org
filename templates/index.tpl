@@ -5,6 +5,10 @@
 
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 
+    <link href='http://fonts.googleapis.com/css?family=PT+Serif' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=PT+Sans' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Source+Code+Pro' rel='stylesheet' type='text/css'>
+
     {{ if .IsHome }}
         <title>{{ setting "page/head/title" }}</title>
     {{ else }}
@@ -29,8 +33,17 @@
     <link rel="stylesheet" href="http://static.hckr.org/bootstrap/css/bootstrap.css" />
     <link rel="stylesheet" href="http://static.hckr.org/bootstrap/css/bootstrap-responsive.css" />
 
+    <!--
     <link rel="stylesheet" href="http://static.hckr.org/google-code-prettify/prettify.css" />
     <script type="text/javascript" src="http://static.hckr.org/google-code-prettify/prettify.js"></script>
+    -->
+
+    <link rel="stylesheet" href="http://static.hckr.org/highlightjs/styles/solarized_dark.css">
+    <script src="http://static.hckr.org/highlightjs/highlight.pack.js"></script>
+    <!--
+    <script src="http://yandex.st/highlightjs/7.3/highlight.min.js"></script>
+    -->
+
 
     <link rel="stylesheet" href="/styles.css" />
 
@@ -46,8 +59,7 @@
             var el = $(code[i])
             var className = el.attr('class');
             if (className) {
-              el.addClass('prettyprint');
-              el.addClass('lang-'+className);
+              el.addClass('language-'+className);
             }
           };
 
@@ -62,7 +74,8 @@
           };
 
           // Starting prettyPrint.
-          prettyPrint();
+          //prettyPrint();
+          hljs.initHighlightingOnLoad();
 
           // Tables without class
 
@@ -86,6 +99,13 @@
 
         }
       );
+      /*
+      $(document).ready(function() {
+        $('pre code').each(function(i, e) {
+          hljs.highlight($(e).attr('class'), e.innerHTML);
+        });
+      });
+      */
     </script>
 
     <style type="text/css">

@@ -23,13 +23,22 @@ import (
 
 func main() {
   // Creating a MD5 hash of a string.
-  fmt.Printf("MD5(\"pass\") = %s\n", checksum.String("pass", crypto.MD5))
+  fmt.Printf(
+    "MD5('pass') = %s\n",
+    checksum.String("pass", crypto.MD5),
+  )
 
   // Creating a SHA1 hash of a string.
-  fmt.Printf("SHA1(\"pass\") = %s\n", checksum.String("pass", crypto.SHA1))
+  fmt.Printf(
+    "SHA1('pass') = %s\n",
+    checksum.String("pass", crypto.SHA1)
+  )
 
   // Creating a SHA256 checksum of a file (as in sha256sum).
-  fmt.Printf("SHA256(\"./input/file.txt\") = %s\n", checksum.File("input/file.txt", crypto.SHA256))
+  fmt.Printf(
+    "SHA256('./input/file.txt') = %s\n",
+    checksum.File("input/file.txt", crypto.SHA256)
+  )
 }
 ```
 

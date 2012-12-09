@@ -1,6 +1,6 @@
 # gosexy/canvas
 
-A wrapper of ImageMagick's [MagickWand][1] that does not want to implement the whole API, it instead wraps
+A wrapper of ImageMagick's [MagickWand][1] that does not want to implement the whole API, it wraps
 the most useful methods for making simple image manipulation easier.
 
 ## Prerequisites
@@ -55,7 +55,7 @@ func main() {
   // Opening some image from disk.
   opened := cv.Open("examples/input/example.png")
 
-  if opened {
+  if opened != nil {
 
     // Photo auto orientation based on EXIF tags.
     cv.AutoOrientate()

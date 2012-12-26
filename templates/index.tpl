@@ -245,7 +245,7 @@
     <hr />
 
     <footer>
-      A project by <a target="_blank" href="http://xiam.menteslibres.org">José Carlos Nieto</a>.
+      A project by <a target="_blank" href="http://xiam.menteslibres.org">José Carlos Nieto</a>, powered by <a href="http://luminos.menteslibres.org" target="_blank">luminos</a>. Want to <a href="https://github.com/gosexy/gosexy.org">hack this site</a>?
     </footer>
 
     {{ if setting "page/body/scripts/footer" }}

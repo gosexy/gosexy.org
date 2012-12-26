@@ -114,8 +114,8 @@ people.Find(
 )
 ```
 
-The above code does not depend on the database you are connecting to, if you change the database wrapper
-eveything would work the same.
+The above code does not depend on the database you are connecting to, in fact, if you change the database wrapper
+everything would work the same.
 
 We created wrappers for four databases: **MongoDB**, **MySQL**, **PostgreSQL** and **SQLite3**.
 

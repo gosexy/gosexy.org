@@ -109,16 +109,20 @@ Now that you are connected to a database you can use the [db.Database](/db/datab
 
 * For MongoDB
   * [Example](https://github.com/gosexy/db/blob/master/_examples/mongo/main.go)
-  * [Test file](https://github.com/gosexy/db/blob/master/mongo/mongo_test.go).
+  * [Test file](https://github.com/gosexy/db/blob/master/mongo/mongo_test.go)
 * For MySQL
   * [Example](https://github.com/gosexy/db/blob/master/_examples/mysql/main.go)
-  * [Test file](https://github.com/gosexy/db/blob/master/mysql/mysql_test.go).
+  * [Test file](https://github.com/gosexy/db/blob/master/mysql/mysql_test.go)
 * For PostgreSQL
   * [Example](https://github.com/gosexy/db/blob/master/_examples/postgresql/main.go)
-  * [Test file](https://github.com/gosexy/db/blob/master/postgresql/postgresql_test.go).
+  * [Test file](https://github.com/gosexy/db/blob/master/postgresql/postgresql_test.go)
 * For SQLite
   * [Example](https://github.com/gosexy/db/blob/master/_examples/sqlite/main.go)
-  * [Test file](https://github.com/gosexy/db/blob/master/sqlite/sqlite_test.go).
+  * [Test file](https://github.com/gosexy/db/blob/master/sqlite/sqlite_test.go)
+
+## Development
+
+Want to get involved? we're [hacking on github](http://github.com/gosexy/db).
 
 ## Got bugs?
 

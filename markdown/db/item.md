@@ -76,7 +76,7 @@ Returns the time value of the element with the specified key. May not recognize 
 
 Returns the duration value of the element with the specified key.
 
-### db.Item.GetTuple(key string) *sugar.Tuple*
+### db.Item.GetMap(key string) *sugar.Map*
 
 Returns the map value of the element with the specified key.
 

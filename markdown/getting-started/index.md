@@ -54,9 +54,9 @@ import (
 func main() {
 
   s, _ := json.Marshal(
-    sugar.Tuple {
+    sugar.Map {
       "Hello": "World",
-      "NestedValues": sugar.Tuple {
+      "NestedValues": sugar.Map {
         "Integers": sugar.List { 1, 2, 3 },
         "Boolean": true,
       },
@@ -67,8 +67,8 @@ func main() {
 }
 ```
 
-In the above code, we replaced every ocurrence of `map[string]interface{}` with `sugar.Tuple` and `[]interface{}`
-with `sugar.List`, that is, the trivial *tuple* and trivial *list* types contained in `github.com/gosexy/sugar`.
+In the above code, we replaced every ocurrence of `map[string]interface{}` with `sugar.Map` and `[]interface{}`
+with `sugar.List`, that is, the trivial *map* and trivial *list* types contained in `github.com/gosexy/sugar`.
 
 This is a really simple example of things that already work very well with [Go][1] but can be made more readable with
 a small change.

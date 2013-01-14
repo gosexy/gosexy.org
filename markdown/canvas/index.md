@@ -50,12 +50,11 @@ import "github.com/gosexy/canvas"
 
 func main() {
   cv := canvas.New()
-  defer cv.Destroy()
 
   // Opening some image from disk.
-  opened := cv.Open("examples/input/example.png")
+  err := cv.Open("examples/input/example.png")
 
-  if opened != nil {
+  if err == nil {
 
     // Photo auto orientation based on EXIF tags.
     cv.AutoOrientate()
@@ -65,7 +64,6 @@ func main() {
 
     // Saving the thumbnail to disk.
     cv.Write("examples/output/example-thumbnail.png")
-
   }
 }
 ```

@@ -1,14 +1,14 @@
 # MySQL wrapper
 
-This driver is a wrapper of [go-mysql-driver](http://code.google.com/p/go-mysql-driver/), a MySQL
-driver by [Julien Schmidt](http://www.julienschmidt.com/).
+This driver is a wrapper of [Go-SQL-Driver/MySQL](https://github.com/Go-SQL-Driver/MySQL),
+a MySQL driver by [Julien Schmidt](http://www.julienschmidt.com/).
 
 ## Installation
 
 ### Driver pre-requisites
 
-The [mercurial](http://mercurial.selenic.com/) version control system is required to install
-`go-mysql-driver`.
+The [mercurial](http://mercurial.selenic.com/) version control system is required to use and
+install `Go-SQL-Driver/MySQL`.
 
 ```sh
 # OSX

@@ -5,22 +5,6 @@ a MySQL driver by [Julien Schmidt](http://www.julienschmidt.com/).
 
 ## Installation
 
-### Driver pre-requisites
-
-The [mercurial](http://mercurial.selenic.com/) version control system is required to use and
-install `Go-SQL-Driver/MySQL`.
-
-```sh
-# OSX
-% brew install hg
-
-# Debian based
-% sudo aptitude install mercurial
-
-# ArchLinux
-% sudo pacman -S mercurial
-```
-
 ### Getting the wrapper
 
 ```sh

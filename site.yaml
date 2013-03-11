@@ -1,9 +1,9 @@
 page:
   brand: "gosexy"
   head:
-    title: "gosexy - Syntactic sugar, libraries and wrappers for Go."
+    title: "gosexy - My journey on Go"
   body:
-    title: "gosexy, Go tools and wrappers"
+    title: "gosexy, libraries and tools for everyday's Go"
     menu:
       - { text: "Get started", url: "/getting-started" }
       - { text: "gosexy/db", url: "/db" }

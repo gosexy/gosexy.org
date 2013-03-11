@@ -1,32 +1,79 @@
 # db.Collection
 
-Collections are sets of rows or documents, so they could be either MongoDB *collections* or
-MySQL/PostgreSQL/SQLite *tables*.
+Collections are sets of rows, these sets could be either MongoDB
+*collections* or MySQL/PostgreSQL/SQLite *tables*. Regarding of the real type,
+all `db.Collection` methods work the same.
 
-The `db.Collection` methods allow you to *create*, *read*, *update* or *delete* rows on any
-``db.Collection`` and you can setup relations between collections.
+The `db.Collection` methods allows you to *create*, *read*, *update* or *delete*
+rows on any `db.Collection`.
 
-When you request data from a collection with `db.Collection.Find()` or `db.Collection.FindAll()`, a special object
-with structure `db.Item` or `[]db.Item` is returned.
+You can query the database using `db.Collection.Query()` or with
+`db.Collection.Find()`/`db.Collection.FindAll()`.
 
-Please read the docs on [db.Item](/db/item), [db.Database](/db/database) and [how to make queries](/db/queries).
+Please read the docs on [db.Item](/db/item), [db.Database](/db/database) and
+[how to make queries](/db/queries).
 
 ```go
 type Collection interface {
-  Append(...interface{}) ([]db.Id, error)
+	/*
+		Inserts an item into the collection. Accepts maps or
+		structs only.
+	*/
+	Append(...interface{}) ([]Id, error)
 
-  Count(...interface{}) (int, error)
+	/*
+		Returns the number of rows that given the given
+		conditions.
+	*/
+	Count(...interface{}) (int, error)
 
-  Find(...interface{}) Item
-  FindAll(...interface{}) []Item
+	/*
+		Returns a db.Item map of the first item that matches the
+		given conditions.
+	*/
+	Find(...interface{}) (Item, error)
 
-  Update(...interface{}) error
-  Exists() bool
+	/*
+		Returns a []db.Item slice of all the items that match the
+		given conditions.
 
-  Remove(...interface{}) error
+		Useful for small datasets.
+	*/
+	FindAll(...interface{}) ([]Item, error)
 
-  Truncate() error
-  Name() string
+	/*
+		Finds a matching row and sets new values for the given
+		fields.
+	*/
+	Update(...interface{}) error
+
+	/*
+		Returns true if the collection exists.
+	*/
+	Exists() bool
+
+	/*
+		Returns a db.Result that can be used for iterating over
+		the rows.
+
+		Useful for large datasets.
+	*/
+	Query(...interface{}) (Result, error)
+
+	/*
+		Deletes all the rows that match the given conditions.
+	*/
+	Remove(...interface{}) error
+
+	/*
+		Deletes all the rows in the collection.
+	*/
+	Truncate() error
+
+	/*
+		Returns the name of the collection.
+	*/
+	Name() string
 }
 ```
 
@@ -103,7 +150,7 @@ if err == nil {
 }
 ```
 
-### db.Collection.Find(...interface{}) *db.Item*
+### db.Collection.Find(...interface{}) *(db.Item, error)*
 
 Return the first `db.Item` of the `db.Collection` that matches all the provided conditions. You can
 provide as many conditions as you want, the order of the conditions does not matter but you must
@@ -118,7 +165,7 @@ people, _ := sess.Collection("people")
 //   SELECT *
 //     FROM people
 //   WHERE name = "John" AND last_name = "Doe" AND (age = 15 OR age = 20);
-person := people.Find(
+person, _ := people.Find(
   db.Cond { "name": "John" },
   db.Cond { "last_name": "Doe" },
   db.Or {
@@ -132,7 +179,7 @@ if person != nil {
 }
 ```
 
-### db.Collection.FindAll(...interface{}) *[]db.Item*
+### db.Collection.FindAll(...interface{}) *([]db.Item, error)*
 
 Returns a list of all the items of the collection that match the provided conditions. See ``db.Collection.Find()``.
 

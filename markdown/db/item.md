@@ -1,12 +1,13 @@
 # db.Item
 
-Items are rows or documents, correct denomination depends on the database.
-For SQL database they are just ``map[string] interface{}`` with no nested values, while in a NoSQL database
-values can have nested values like lists or other maps.
+Items are rows or documents, correct nomenclature depends on the database.
 
-Either way, a ``db.Item`` can be treated as a ``map[string] interface{}``. Castings and
-conversions could be tricky with `interfaces{}`, that's why this data type has a few methods that may help
-with common conversions.
+For SQL databases they are just ``map[string] interface{}`` with no nested
+values, while in NoSQL databases values can have nested values like slices or
+other maps.
+
+Either way, a `db.Item` can be treated as a `map[string] interface{}`.
+
 
 ```go
 type Item map[string]interface{}
@@ -36,7 +37,8 @@ if err != nil {
 defer sess.Close()
 ```
 
-Point a variable to a collection using the `db.Database.Collection()` or `db.Database.ExistentCollection()` methods.
+Point a variable to a collection using the `db.Database.Collection()` or
+`db.Database.ExistentCollection()` methods.
 
 ```go
 // Collection could not exists, an error would be returned.
@@ -49,49 +51,27 @@ users := sess.ExistentCollection("users")
 Finally, use `db.Collection.Find()` or `db.Collection.FindAll()` to fetch one or many items.
 
 ```go
-// db.Collection.Find(...interface{}) *db.Item*
-john := users.Find(db.Cond{"name": "john"})
+// db.Collection.Find(...interface{}) *(db.Item, error)*
+john, _ := users.Find(db.Cond{"name": "john"})
 if john != nil {
 	fmt.Println("John was found.")
 }
 
-// db.Collection.FindAll(...interface{}) *[]db.Item*
-smiths := users.Find(db.Cond{"last_name": "smith"})
+// db.Collection.FindAll(...interface{}) *([]db.Item, error)*
+smiths, _ := users.Find(db.Cond{"last_name": "smith"})
+
 for _, smith := range smiths {
-	fmt.Printf("Hi, %s %s.\n", smith.GetString("name"), smith.GetString("last_name"))
+	fmt.Printf("Hi, %s %s.\n", smith["name"], smith["last_name"])
 }
 ```
 
-## Methods
+## Tips and tricks
 
-### db.Item.GetString(key string) *string*
+Castings and conversions could be tricky with `interface{}`s, these packages
+may help.
 
-Returns the string value of the element with the specified key.
+* [github.com/gosexy/dig][1] For nested values.
+* [github.com/gosexy/to][2] For value conversions.
 
-### db.Item.GetDate(key string) *time.Time*
-
-Returns the time value of the element with the specified key. May not recognize all time and date formats yet.
-
-### db.Item.GetDuration(key string) *time.Duration*
-
-Returns the duration value of the element with the specified key.
-
-### db.Item.GetMap(key string) *sugar.Map*
-
-Returns the map value of the element with the specified key.
-
-### db.Item.GetList(key string) *sugar.List*
-
-Returns the sugar.List value of the element with the specified key.
-
-### db.Item.GetInt(key string) *int64*
-
-Returns the integer value of the element with the specified key
-
-### db.Item.GetFloat(key string) *float64*
-
-Returns the float value of the element with the specified key
-
-### db.Item.GetBool(key string) *bool*
-
-Returns the boolean value of the element with the specified key
+[1]: http://github.com/gosexy/dig
+[2]: http://github.com/gosexy/to

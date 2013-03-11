@@ -1,6 +1,7 @@
 # What's gosexy.org about?
 
-I started to learn [Go][1] since [1.0][7] and it has been a refreshing ride.
+I started to learn [Go][1] since [1.0][7] and, so long, it has been a refreshing
+ride.
 
 The goal of this project is to get fun by creating [cgo][3] wrappers and pure
 [Go][1] libraries that could be used by any other [Go][1] learners while

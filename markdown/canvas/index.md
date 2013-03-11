@@ -1,45 +1,35 @@
 # gosexy/canvas
 
-A wrapper of ImageMagick's [MagickWand][1] that does not want to implement the whole API, it wraps
-the most useful methods for making simple image manipulation easier.
+`gosexy/canvas` is an image processing library for [Go][4] that uses
+[ImageMagick][6]'s MagickWand as backend. It relies on [cgo][5] and
+the [source code][7] is available at github.
 
 ## Prerequisites
 
-### OSX
-
-The ImageMagick's header files are required. If you're using ``brew`` the installation is straightforward.
+The ImageMagick's header files are required.
 
 ```sh
-$ brew install imagemagick
-```
+# OSX
+brew install imagemagick
 
-### Debian (MagickWand 6.6.x)
+# Arch Linux
+sudo pacman -S extra/imagemagick
 
-Debian has an old version of MagickWand (6.6.x), this binding was built against 6.7.x. Please check out the
-[squeeze branch](https://github.com/gosexy/canvas/tree/squeeze) to get a version that works on Debian Squeeze and
-probably other debian-based distros. This may not be required for Ubuntu.
-
-### Arch Linux
-
-```sh
-$ sudo pacman -S extra/imagemagick
+# Debian
+sudo aptitude install libmagickwand-dev
 ```
 
 ### Other Operative Systems
 
-Please, follow the [install from source](http://imagemagick.com/script/install-source.php?ImageMagick=9uv1bcgofrv21mhftmlk4v1465) tutorial.
+Please, follow the [install from source][1] tutorial.
 
 ## Installation
 
-After installing ImageMagick's header files, pull ``gosexy/canvas`` from github:
+After installing ImageMagick's header files, pull `gosexy/canvas` from github:
 
 ```sh
-$ go get github.com/gosexy/canvas
+go get -u github.com/gosexy/canvas
 ```
-
-## Updating
-
-After installing, you can use `go get -u github.com/gosexy/canvas` to keep up to date.
 
 ## Usage
 
@@ -70,12 +60,12 @@ func main() {
 
 ## Documentation
 
-You can read ``gosexy/canvas`` documentation from a terminal
-
-```go
-$ go doc github.com/gosexy/canvas
-```
-
-Or you can [browse it](http://go.pkgdoc.org/github.com/gosexy/canvas) online.
+You can browse the docs online at [godoc.org/github.com/gosexy/canvas][2].
 
 [1]: http://www.imagemagick.org/script/magick-wand.php
+[2]: http://www.imagemagick.org/script/install-source.php
+[3]: http://godoc.org/github.com/gosexy/canvas
+[4]: http://www.golang.org
+[5]: http://golang.org/cmd/cgo/
+[6]: http://www.imagemagick.org
+[7]: http://github.com/gosexy/canvas

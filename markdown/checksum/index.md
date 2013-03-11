@@ -1,13 +1,14 @@
 # gosexy/checksum
 
-Wrapper around Go's crypto functions that puts a little sugar on creating checksums of strings or files.
+Trivial wrapper around Go's crypto functions that puts a little sugar on
+creating checksum hashes of strings or files.
 
 ## Installation
 
-Use ``go get`` to download and install ``gosexy/checksum``.
+Use `go get` to download and install `gosexy/checksum`.
 
 ```sh
-$ go get github.com/gosexy/checksum
+go get github.com/gosexy/checksum
 ```
 
 ## Sample usage
@@ -44,9 +45,6 @@ func main() {
 
 ## Documentation
 
-Please read the [online reference](http://gosexy.org/checksum).
+Documentation is available at [godoc.org/github.com/gosexy/checksum][1].
 
-You can also read ``gosexy/checksum`` documentation from a terminal
-
-    $ go doc github.com/gosexy/checksum
-
+[1]: http://godoc.org/github.com/gosexy/checksum

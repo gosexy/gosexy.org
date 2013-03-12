@@ -1,6 +1,7 @@
 # MongoDB wrapper
 
-This package is a wrapper of [mgo](http://labix.org/mgo), a MongoDB driver by [Gustavo Niemeyer](http://labyx.org).
+This package is a wrapper of [mgo](http://labix.org/mgo), a MongoDB driver by
+[Gustavo Niemeyer](http://labyx.org).
 
 ## Installation
 
@@ -11,24 +12,24 @@ to install `mgo`.
 
 ```sh
 # OSX
-% brew install bzr
+brew install bzr
 
 # Debian based
-% sudo aptitude install bzr
+sudo aptitude install bzr
 
 # ArchLinux
-% sudo pacman -S bzr
+sudo pacman -S bzr
 ```
 
-### Getting the wrapper
+### Downloading and installing
 
 ```sh
-% go get github.com/gosexy/db/mongo
+go get github.com/gosexy/db/mongo
 ```
 
 ## Usage
 
-Import the `gosexy/db` and `github.com/gosexy/db/mongo` packages.
+Import the `gosexy/db` and `gosexy/db/mongo` packages.
 
 ```go
 import (
@@ -52,5 +53,6 @@ defer sess.Close()
 
 ### Querying the database
 
-You may check out the [gosexy/db documentation](/db).
+Check out the [gosexy/db documentation](/db) for documentation in how to query
+a collection.
 

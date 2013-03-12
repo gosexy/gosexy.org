@@ -1,14 +1,15 @@
 # MySQL wrapper
 
-This driver is a wrapper of [Go-SQL-Driver/MySQL](https://github.com/Go-SQL-Driver/MySQL),
+This package is a wrapper of
+[Go-SQL-Driver/MySQL](https://github.com/Go-SQL-Driver/MySQL),
 a MySQL driver by [Julien Schmidt](http://www.julienschmidt.com/).
 
 ## Installation
 
-### Getting the wrapper
+### Downloading and installing
 
 ```sh
-% go get github.com/gosexy/db/mysql
+go get github.com/gosexy/db/mysql
 ```
 
 ## Usage
@@ -37,5 +38,6 @@ defer sess.Close()
 
 ### Querying the database
 
-You may check out the [gosexy/db documentation](/db).
+Check out the [gosexy/db documentation](/db) for documentation in how to query
+a collection.
 

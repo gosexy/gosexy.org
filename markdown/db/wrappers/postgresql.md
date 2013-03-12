@@ -1,18 +1,16 @@
 # PostgreSQL wrapper
 
-This package is a wrapper of [pq](https://github.com/bmizerany/pq), a PostgreSQL driver
-by [Blake Mizerany](http://blakemizerany.com).
+This package is a wrapper of [pq](https://github.com/bmizerany/pq), a PostgreSQL
+driver by [Blake Mizerany](http://blakemizerany.com).
 
 In order to work with `gosexy/db` the original driver had to be
-[forked][1] as the changes we made to it are incompatible with some of [pq][1]'s
-own features.
+[forked][1], the changes we made to it were incompatible with some of
+[pq][1]'s own features.
 
-## Installation
-
-This driver does not have any pre-requisites.
+## Downloading and installing
 
 ```sh
-% go get github.com/gosexy/db/postgresql
+go get github.com/gosexy/db/postgresql
 ```
 
 ## Usage
@@ -41,6 +39,7 @@ defer sess.Close()
 
 ### Querying the database
 
-You may check out the [gosexy/db documentation](/db).
+Check out the [gosexy/db documentation](/db) for documentation in how to query
+a collection.
 
 [1]: https://github.com/xiam/gopostgresql

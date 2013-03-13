@@ -9,26 +9,27 @@ pointer.
 // Result methods.
 type Result interface {
   /*
-    Fetches all the results of the query into the given pointer.
+    Fetches all the results of the query into the given
+    pointer.
 
     Accepts a pointer to slice of maps or structs.
   */
   All(interface{}) error
 
   /*
-    Fetches the first result of the query into the given pointer and discards
-    the rest.
+    Fetches the first result of the query into the given
+    pointer and discards the rest.
 
     Accepts a pointer to map or struct.
   */
   One(interface{}) error
 
   /*
-    Fetches the next result of the query into the given pointer. Returns error if
-    there are no more results.
+    Fetches the next result of the query into the given
+    pointer. Returns error if there are no more results.
 
-    Warning: If you're only using part of these results you must manually Close()
-    the result.
+    Warning: If you're only using part of these results
+    you must manually Close() the result.
 
     Accepts a pointer to map or struct.
   */

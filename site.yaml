@@ -1,9 +1,9 @@
 page:
   brand: "gosexy"
   head:
-    title: "gosexy - My journey on Go"
+    title: "gosexy - experients, libraries and tools for Go"
   body:
-    title: "gosexy, libraries and tools for everyday's Go"
+    title: "gosexy, experiments, libraries and tools for Go"
     menu:
       - { text: "Get started", url: "/getting-started" }
       - { text: "gosexy/db", url: "/db" }

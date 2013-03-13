@@ -13,7 +13,7 @@ hand.
 Use `go get` to download and install `gosexy/db`.
 
 ```sh
-go get github.com/gosexy/db
+go get -u github.com/gosexy/db
 ```
 
 This package provides the basic structures and types but it cannot connect to any
@@ -93,11 +93,15 @@ use the returned value to query the collection.
 // func db.Database.Collection(string) -> (db.Collection, error)
 people, _ := sess.Collection("people")
 
-// func db.Collection.FindAll(...interface{}) -> []db.Item
-items := people.FindAll(
+// func db.Collection.FindAll(...interface{}) -> ([]db.Item, error)
+items, err := people.FindAll(
   // Query condition
   db.Cond { "name": "Peter" },
 )
+
+if err != nil {
+  panic(err.Error())
+}
 
 // Looping over the results.
 for _, item := range items {

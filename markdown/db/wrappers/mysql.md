@@ -19,7 +19,7 @@ Import the `gosexy/db` and `github.com/gosexy/db/mysql` packages.
 ```go
 import (
   "github.com/gosexy/db"
-	# Note that we are importing to the blank namespace.
+	# Note that we are importing to the blank identifier.
   _ "github.com/gosexy/db/mysql"
 )
 ```

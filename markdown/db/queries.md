@@ -14,7 +14,7 @@ or `db.Collection.FindAll()`.
 type Cond map[string]interface{}
 ```
 
-This type was created to represent conditions in a query. Conditions need
+This type was created to represent conditions in a query. Conditions have
 operators and these operators may be incompatible between databases, while
 there is certain level of compatibility we recommend using operators depending
 on the database you're working on.

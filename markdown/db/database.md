@@ -87,7 +87,7 @@ Returns the current wrapper's underlying driver as an `interface{}`, so you can
 still use it for any special request. For example, if you're using the
 `github.com/gosexy/db/mongo` wrapper this method will return a
 `*mgo.Session` object, as the wrapper uses the [mgo](http://labix.org/v2/mgo)
-driver and if you're using any `database/sql` driver you'll have a `*sql.DB`.
+while if you're using any `database/sql` driver you'll have a `*sql.DB`.
 
 <!--
 ### db.Database.Open() *error*

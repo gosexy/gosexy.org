@@ -1,8 +1,8 @@
-# db.Collection
+# gosexy/db: db.Collection
 
-Collections are sets of rows, these sets could be either MongoDB
-*collections* or MySQL/PostgreSQL/SQLite *tables*. Regarding of the real type,
-all `db.Collection` methods work the same.
+Collections are sets of rows, sets could be either MongoDB *collections*
+or MySQL/PostgreSQL/SQLite *tables*. Regarding of the technical nomenclature,
+all `db.Collection` methods return equivalent results across databases.
 
 The `db.Collection` methods allows you to *create*, *read*, *update* or *delete*
 rows on any `db.Collection`.
@@ -22,7 +22,7 @@ type Collection interface {
   Append(...interface{}) ([]db.Id, error)
 
   /*
-    Returns the number of rows that given the given
+    Returns the number of rows that match the given
     conditions.
   */
   Count(...interface{}) (int, error)
@@ -77,9 +77,10 @@ type Collection interface {
 }
 ```
 
-## Creating a db.Collection object
+## Creating a *db.Collection*
 
-Use `db.Open` to create and retrieve a `db.Database`.
+Use `db.Open` to create and retrieve a `db.Database` value, store it into
+a variable. That's your database session.
 
 ```go
 // Database settings
@@ -101,11 +102,11 @@ if err != nil {
 defer sess.Close()
 ```
 
-Usa a variable to point to a collection with the `db.Database.Collection()` or
-`db.Database.ExistentCollection()` methods.
+Call the `db.Database.Collection()` method of your session variable and point
+the resulting value to another variable, that's your collection.
 
 ```go
-// Collection could not exists, an error will be returned.
+// Collection could not exists, an error will be returned in that case.
 people, err := sess.Collection("people")
 
 // Collection must exists, it will panic otherwise.
@@ -119,7 +120,8 @@ users := sess.ExistentCollection("users")
 Executes a query and results a `db.Result`, accepts the same parameters as
 `db.Collection.FindAll()`.
 
-Please refer to the documentation on [db.Result](/db/result).
+Please refer to the documentation on [db.Result](/db/result) to know how to
+iterate over results.
 
 ```go
 // The `sess` variable is a db.Database object.
@@ -147,14 +149,15 @@ for true {
 }
 ```
 
-This is the recommended way for fetching very large datasets.
+Using `db.Collection.Query` is the recommended way for fetching very large
+datasets.
 
 ### db.Collection.Append(...interface{}) *([]db.Id, error)*
 
 Appends one or more items to the collection, a valid item could be either a map
 or an struct.
 
-Returns a list of ids corresponding to each one of the appended items.
+Returns a list of IDs, each one of them corresponding to one of the given items.
 
 ```go
 // The `sess` variable is a db.Database object.

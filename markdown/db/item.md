@@ -3,11 +3,9 @@
 Items are rows or documents, correct nomenclature depends on the database.
 
 For SQL databases they are just ``map[string] interface{}`` with no nested
-values, while in NoSQL databases values can have nested values like slices or
-other maps.
+values, NoSQL databases can have nested values like slices or other maps.
 
 Either way, a `db.Item` can be treated as a `map[string] interface{}`.
-
 
 ```go
 type Item map[string]interface{}
@@ -68,10 +66,10 @@ for _, smith := range smiths {
 ## Tips and tricks
 
 Castings and conversions could be tricky with `interface{}`s, these packages
-may help.
+may be useful.
 
-* [github.com/gosexy/dig][1] For nested values.
-* [github.com/gosexy/to][2] For value conversions.
+* [github.com/gosexy/dig][1] For quick access to nested values.
+* [github.com/gosexy/to][2] For adventurous value conversions.
 
 [1]: http://github.com/gosexy/dig
 [2]: http://github.com/gosexy/to

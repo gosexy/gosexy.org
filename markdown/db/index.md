@@ -43,19 +43,21 @@ You can follow the same steps for any other database wrapper, just replace
 
 ### 1. Import the wrapper
 
-Once the wrapper is installed, import it into your project along the `gosexy/db`
-package.
+Once the wrapper is installed, import both the `gosexy/db` and the
+`gosexy/db/{drivername}` packages. The drive package must be imported to
+the [blank identifier](http://golang.org/doc/effective_go.html#blank).
 
 ```go
 import (
   "github.com/gosexy/db"
+  // Note the underscore at the beginning
   _ "github.com/gosexy/db/postgresql"
 )
 ```
 
 ### 2. Set up the source
 
-Set your database settings to a variable.
+Put your database settings into a variable.
 
 ```go
 var settings = db.DataSource{
@@ -108,7 +110,10 @@ for _, item := range items {
   fmt.Printf("Last name: %s\n", item["last_name"])
 }
 ```
+
 ## What's next?
+
+Congratulations!
 
 Now that you are connected to a database you can use the
 [db.Database](/db/database) and [db.Collection](/db/collection) methods to

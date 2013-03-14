@@ -1,6 +1,6 @@
 # db.Result
 
-A result holds a dataset generated using `db.Collection.Query()`.
+A `db.Result` provides methods for accessing results of a `gosexy/db` query.
 
 `db.Result` methods are capable of copying a result into a map or a struct
 pointer.
@@ -89,7 +89,7 @@ for true {
 
 Dumps the whole result set into an slice.
 
-Panics if the argument is not a pointer to slice of maps or structs.
+Panics if the argument is not a pointer to an slice of maps/structs.
 
 You can only use this function one time per result set.
 
@@ -113,7 +113,7 @@ for _, item := range items {
 
 Copies the first item of the result set into the given argument.
 
-Panics if the argument is not a pointer to map or struct.
+Panics if the argument is not a pointer to map/struct.
 
 You can only use this function one time per result set.
 
@@ -135,9 +135,9 @@ fmt.Printf("Name: %s\n", item["name"])
 
 Copies the next item of the result set into the given argument.
 
-Panics if the argument is not a pointer to map or struct.
+Panics if the argument is not a pointer to map/struct.
 
-Returns error when no more rows are left.
+Returns error when there are no more rows for reading.
 
 It is recommended to use db.Result.Close() after reading the result set.
 

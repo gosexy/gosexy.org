@@ -1,14 +1,13 @@
 page:
   brand: "gosexy"
   head:
-    title: "gosexy - experients, libraries and tools for Go"
+    title: "gosexy - experiments, libraries and tools for Go"
   body:
-    title: "gosexy, experiments, libraries and tools for Go"
+    title: "gosexy: experiments, libraries and tools for Go"
     menu:
       - { text: "Get started", url: "/getting-started" }
       - { text: "gosexy/db", url: "/db" }
       - { text: "gosexy/canvas", url: "/canvas" }
-      - { text: "gosexy/checksum", url: "/checksum" }
       - { text: "Source code", url: "https://github.com/gosexy" }
       - { text: "Forum", url: "https://groups.google.com/forum/?fromgroups=#!forum/gosexy" }
     menu_pull:

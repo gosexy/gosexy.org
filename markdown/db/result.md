@@ -74,7 +74,7 @@ results, _ := people.Query(
 
 
 // Iterating over results.
-for true {
+for {
   item := struct{Name string}{}
   err := results.Next(&item)
   if err != nil {
@@ -148,7 +148,7 @@ results, _ := people.Query(
   db.Cond { "name": "John" },
 )
 
-for true {
+for {
   item := db.Item{}
 
   err := results.Next(&item)

@@ -138,7 +138,7 @@ results, _ := people.Query(
 )
 
 // Iterating over results.
-for true {
+for {
   var item db.Item
   err := results.Next(&item)
   if err != nil {

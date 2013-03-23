@@ -1,7 +1,7 @@
 # MySQL wrapper
 
 This package is a wrapper of
-[Go-SQL-Driver/MySQL](https://github.com/Go-SQL-Driver/MySQL),
+[go-sql-driver/mysql](https://github.com/go-sql-driver/mysql),
 a MySQL driver by [Julien Schmidt](http://www.julienschmidt.com/).
 
 ## Installation
@@ -11,6 +11,30 @@ a MySQL driver by [Julien Schmidt](http://www.julienschmidt.com/).
 ```sh
 go get github.com/gosexy/db/mysql
 ```
+
+#### One step more
+
+There is an special extra step required to work with Julien's driver.
+
+After you've pulled the package with `go get`, go to the driver's path and
+checkout a special revision:
+
+```
+cd $GOPATH/src/github.com/go-sql-driver/mysql
+git checkout a8a04cc28d45f986dbb9c4c2e76e805bf7b17787
+go build && go install
+```
+
+Then build `gosexy/db/mysql` again:
+
+```
+cd $GOPATH/src/github.com/gosexy/db/mysql
+go build && go install
+```
+
+Please check out this
+[issue](https://github.com/go-sql-driver/mysql/issues/48) to keep updated on
+this topic.
 
 ## Usage
 

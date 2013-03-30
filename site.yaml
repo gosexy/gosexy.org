@@ -1,9 +1,9 @@
 page:
   brand: "gosexy"
   head:
-    title: "gosexy - experiments, libraries and tools for Go (golang)"
+    title: "menteslibres.net/gosexy - experiments, libraries and tools for Go (golang)"
   body:
-    title: "gosexy: experiments, libraries and tools for Go (golang)"
+    title: "menteslibres.net/gosexy: experiments, libraries and tools for Go (golang)"
     menu:
       - { text: "Get started", url: "/getting-started" }
       - { text: "Source code", url: "https://github.com/gosexy" }
@@ -14,6 +14,7 @@ page:
       footer: |
         var _gaq = _gaq || [];
         _gaq.push(['_setAccount', 'UA-29635554-2']);
+        _gaq.push(['_setDomainName', 'menteslibres.net']);
         _gaq.push(['_trackPageview']);
 
         (function() {

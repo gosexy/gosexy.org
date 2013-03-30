@@ -1,6 +1,6 @@
 # Querying the database
 
-Queries are operations on [collections](/db/collection), the `gosexy/db`
+Queries are operations on [collections](/gosexy/db/collection), the `gosexy/db`
 package implements some custom datatypes that can be used as arguments on
 `db.Collection` functions like `db.Collection.Query()`, `db.Collection.Find()`
 or `db.Collection.FindAll()`.
@@ -354,7 +354,7 @@ people.Update(
 
 You can use `db.Upsert` with `db.Collection.Update()`.
 
-At this time only available for the [mongo](/db/drivers/mongo) driver.
+At this time only available for the [mongo](/gosexy/db/wrappers/mongo) driver.
 
 ### db.Modify
 
@@ -382,4 +382,4 @@ You can use `db.Modify` as argument for:
 
 * `db.Collection.Update()`
 
-At this time it is only available for the [mongo](/db/drivers/mongo) driver.
+At this time it is only available for the [mongo](/gosexy/db/wrappers/mongo) driver.

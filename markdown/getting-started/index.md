@@ -238,7 +238,7 @@ people.Find(
 ```
 
 If you think the above idea can help you writing a great project, please
-continue to the [gosexy/db](/db) docs.
+continue to the [gosexy/db](/gosexy/db) docs.
 
 Hope you liked this little introduction to [gosexy.org][3].
 

@@ -24,17 +24,17 @@ database by itself, in order to connect to a database a *wrapper* is required.
 Each wrapper has its own requeriments, please refer to the appropriate wrapper's
 page to read installing instructions.
 
-* [mongo](/db/wrappers/mongo)
-* [mysql](/db/wrappers/mysql)
-* [postgresql](/db/wrappers/postgresql)
-* [sqlite](/db/wrappers/sqlite)
+* [mongo](/gosexy/db/wrappers/mongo)
+* [mysql](/gosexy/db/wrappers/mysql)
+* [postgresql](/gosexy/db/wrappers/postgresql)
+* [sqlite](/gosexy/db/wrappers/sqlite)
 
 ## Usage example
 
 Here's an example on how to connect to a [PostgreSQL](http://postgresql.org)
 database.
 
-Go to the [PostgreSQL driver](/db/wrappers/postgresql)'s page to read
+Go to the [PostgreSQL driver](/gosexy/db/wrappers/postgresql)'s page to read
 instructions on how to install the wrapper.
 
 You can follow the same steps for any other database wrapper, just replace
@@ -116,7 +116,7 @@ for _, item := range items {
 Congratulations!
 
 Now that you are connected to a database you can use the
-[db.Database](/db/database) and [db.Collection](/db/collection) methods to
+[db.Database](/gosexy/db/database) and [db.Collection](/gosexy/db/collection) methods to
 create queries and retrieve results.
 
 ## More code examples

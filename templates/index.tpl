@@ -5,9 +5,19 @@
 
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 
-    <link href='http://fonts.googleapis.com/css?family=PT+Serif' rel='stylesheet' type='text/css'>
-    <link href='http://fonts.googleapis.com/css?family=PT+Sans' rel='stylesheet' type='text/css'>
-    <link href='http://fonts.googleapis.com/css?family=Source+Code+Pro' rel='stylesheet' type='text/css'>
+    <link href="http://fonts.googleapis.com/css?family=PT+Serif" rel="stylesheet" type="text/css">
+    <link href="http://fonts.googleapis.com/css?family=PT+Sans" rel="stylesheet" type="text/css">
+    <link href="http://fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+
+    <meta name="go-import" content="menteslibres.net/gosexy/db git https://github.com/gosexy/db">
+    <meta name="go-import" content="menteslibres.net/gosexy/canvas git https://github.com/gosexy/canvas">
+    <meta name="go-import" content="menteslibres.net/gosexy/checksum git https://github.com/gosexy/checksum">
+    <meta name="go-import" content="menteslibres.net/gosexy/yaml git https://github.com/gosexy/yaml">
+    <meta name="go-import" content="menteslibres.net/gosexy/rest git https://github.com/gosexy/rest">
+    <meta name="go-import" content="menteslibres.net/gosexy/redis git https://github.com/gosexy/redis">
+    <meta name="go-import" content="menteslibres.net/gosexy/dig git https://github.com/gosexy/dig">
+    <meta name="go-import" content="menteslibres.net/gosexy/to git https://github.com/gosexy/to">
+    <meta name="go-import" content="menteslibres.net/gosexy/cli git https://github.com/gosexy/cli">
 
     {{ if .IsHome }}
         <title>{{ setting "page/head/title" }}</title>
@@ -45,7 +55,7 @@
     -->
 
 
-    <link rel="stylesheet" href="/styles.css" />
+    <link rel="stylesheet" href="{{ asset "/styles.css" }}" />
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -99,13 +109,6 @@
 
         }
       );
-      /*
-      $(document).ready(function() {
-        $('pre code').each(function(i, e) {
-          hljs.highlight($(e).attr('class'), e.innerHTML);
-        });
-      });
-      */
     </script>
 
     <style type="text/css">
@@ -126,7 +129,7 @@
       <div class="navbar-inner">
         <div class="container">
 
-          <a class="brand" href="{{ url "/" }}">{{ setting "page/brand" }}</a>
+          <a class="brand" href="{{ asset "/" }}">{{ setting "page/brand" }}</a>
 
           <div class="nav-collapse">
             {{ if settings "page/body/menu" }}
@@ -153,20 +156,15 @@
     {{ if .IsHome }}
 
       <div class="hero-unit">
-        <img src="/images/gophers.png" />
-        <h1>github.com/gosexy</h1>
+        <img src="{{ asset "/images/gophers.png" }}" />
+        <h1>menteslibres.net/gosexy</h1>
         <p>
-          Syntactic sugar, libraries and wrappers for <a href="http://golang.org" target="_blank">Go</a>.
+          Libraries and wrappers for the <a href="http://golang.org" target="_blank">Go</a> learner.
         </p>
         <p class="pull-right">
-          <a href="/getting-started" class="btn btn-primary btn-large">
+          <a href="{{ asset "/getting-started" }}" class="btn btn-primary btn-large">
             Get started
           </a>
-<!--
-          <a href="/download" class="btn btn-large">
-            Download
-          </a>
--->
         </p>
       </div>
 
@@ -245,7 +243,7 @@
     <hr />
 
     <footer>
-      A project by <a target="_blank" href="http://xiam.menteslibres.org">José Carlos Nieto</a>, powered by <a href="http://luminos.menteslibres.org" target="_blank">luminos</a>. Want to <a href="https://github.com/gosexy/gosexy.org">hack this site</a>?
+      Powered by <a href="http://luminos.menteslibres.org" target="_blank">luminos</a>. Wanna <a href="https://github.com/gosexy/gosexy.org">hack</a> this site?
     </footer>
 
     {{ if setting "page/body/scripts/footer" }}

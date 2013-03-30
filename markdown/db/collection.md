@@ -10,8 +10,8 @@ rows on any `db.Collection`.
 You can query the database using `db.Collection.Query()` or with
 `db.Collection.Find()`/`db.Collection.FindAll()`.
 
-Please read the docs on [db.Item](/db/item), [db.Database](/db/database) and
-[how to make queries](/db/queries).
+Please read the docs on [db.Item](/gosexy/db/item), [db.Database](/gosexy/db/database) and
+[how to make queries](/gosexy/db/queries).
 
 ```go
 type Collection interface {
@@ -120,7 +120,7 @@ users := sess.ExistentCollection("users")
 Executes a query and results a `db.Result`, accepts the same parameters as
 `db.Collection.FindAll()`.
 
-Please refer to the documentation on [db.Result](/db/result) to know how to
+Please refer to the documentation on [db.Result](/gosexy/db/result) to know how to
 iterate over results.
 
 ```go

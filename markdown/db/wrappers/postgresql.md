@@ -39,7 +39,7 @@ defer sess.Close()
 
 ### Querying the database
 
-Check out the [gosexy/db documentation](/db) for documentation in how to query
+Check out the [gosexy/db documentation](/gosexy/db) for documentation in how to query
 a collection.
 
 [1]: https://github.com/xiam/gopostgresql

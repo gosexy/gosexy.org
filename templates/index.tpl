@@ -35,8 +35,7 @@
     <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->
 
-    <script type="text/javascript" src="http://get.jsfoo.org/jquery.js"></script>
-    <script type="text/javascript" src="http://get.jsfoo.org/jquery.foo.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 
     <link rel="stylesheet" href="http://static.hckr.org/normalize/normalize.css" />
 
@@ -53,7 +52,6 @@
     <!--
     <script src="http://yandex.st/highlightjs/7.3/highlight.min.js"></script>
     -->
-
 
     <link rel="stylesheet" href="{{ asset "/styles.css" }}" />
 
@@ -73,6 +71,7 @@
             }
           };
 
+          /*
           // An exception, LaTeX blocks.
           var code = $('code.latex');
 
@@ -82,9 +81,9 @@
             img.insertBefore(el);
             el.hide();
           };
+          */
 
           // Starting prettyPrint.
-          //prettyPrint();
           hljs.initHighlightingOnLoad();
 
           // Tables without class

@@ -5,9 +5,9 @@
 
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 
-    <link href="http://fonts.googleapis.com/css?family=PT+Serif" rel="stylesheet" type="text/css">
-    <link href="http://fonts.googleapis.com/css?family=PT+Sans" rel="stylesheet" type="text/css">
-    <link href="http://fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+    <link href="//fonts.googleapis.com/css?family=PT+Serif" rel="stylesheet" type="text/css">
+    <link href="//fonts.googleapis.com/css?family=PT+Sans" rel="stylesheet" type="text/css">
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
 
     <meta name="go-import" content="menteslibres.net/gosexy/db git https://github.com/gosexy/db">
     <meta name="go-import" content="menteslibres.net/gosexy/canvas git https://github.com/gosexy/canvas">
@@ -32,26 +32,18 @@
 
     <!-- Le HTML5 shim, for IE6-8 support of HTML elements -->
     <!--[if lt IE 9]>
-    <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->
 
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 
-    <link rel="stylesheet" href="http://static.hckr.org/normalize/normalize.css" />
+    <link rel="stylesheet" href="//menteslibres.net/static/normalize/normalize.css" />
 
-    <link rel="stylesheet" href="http://static.hckr.org/bootstrap/css/bootstrap.css" />
-    <link rel="stylesheet" href="http://static.hckr.org/bootstrap/css/bootstrap-responsive.css" />
+    <link rel="stylesheet" href="//menteslibres.net/static/bootstrap/css/bootstrap.css" />
+    <link rel="stylesheet" href="//menteslibres.net/static/bootstrap/css/bootstrap-responsive.css" />
 
-    <!--
-    <link rel="stylesheet" href="http://static.hckr.org/google-code-prettify/prettify.css" />
-    <script type="text/javascript" src="http://static.hckr.org/google-code-prettify/prettify.js"></script>
-    -->
-
-    <link rel="stylesheet" href="http://static.hckr.org/highlightjs/styles/solarized_dark.css">
-    <script src="http://static.hckr.org/highlightjs/highlight.pack.js"></script>
-    <!--
-    <script src="http://yandex.st/highlightjs/7.3/highlight.min.js"></script>
-    -->
+    <link rel="stylesheet" href="//menteslibres.net/static/highlightjs/styles/solarized_dark.css">
+    <script src="//menteslibres.net/static/highlightjs/highlight.pack.js"></script>
 
     <link rel="stylesheet" href="{{ asset "/styles.css" }}" />
 

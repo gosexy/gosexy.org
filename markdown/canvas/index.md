@@ -28,7 +28,7 @@ Please, follow the [install from source][1] tutorial.
 After installing ImageMagick's header files, pull `gosexy/canvas` from github:
 
 ```sh
-go get -u github.com/gosexy/canvas
+go get -u menteslibres.net/gosexy/canvas
 ```
 
 ## Usage
@@ -36,7 +36,7 @@ go get -u github.com/gosexy/canvas
 ```go
 package main
 
-import "github.com/gosexy/canvas"
+import "menteslibres.net/gosexy/canvas"
 
 func main() {
   cv := canvas.New()
@@ -60,11 +60,11 @@ func main() {
 
 ## Documentation
 
-You can browse the docs online at [godoc.org/github.com/gosexy/canvas][2].
+You can browse the docs online at [godoc.org/menteslibres.net/gosexy/canvas][2].
 
 [1]: http://www.imagemagick.org/script/magick-wand.php
 [2]: http://www.imagemagick.org/script/install-source.php
-[3]: http://godoc.org/github.com/gosexy/canvas
+[3]: http://godoc.org/menteslibres.net/gosexy/canvas
 [4]: http://www.golang.org
 [5]: http://golang.org/cmd/cgo/
 [6]: http://www.imagemagick.org

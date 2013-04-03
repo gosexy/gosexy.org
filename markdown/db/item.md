@@ -68,8 +68,8 @@ for _, smith := range smiths {
 Castings and conversions could be tricky with `interface{}`s, these packages
 may be useful.
 
-* [github.com/gosexy/dig][1] For quick access to nested values.
-* [github.com/gosexy/to][2] For adventurous value conversions.
+* [menteslibres.net/gosexy/dig][1] For quick access to nested values.
+* [menteslibres.net/gosexy/to][2] For adventurous value conversions.
 
-[1]: http://github.com/gosexy/dig
-[2]: http://github.com/gosexy/to
+[1]: http://menteslibres.net/gosexy/dig
+[2]: http://menteslibres.net/gosexy/to

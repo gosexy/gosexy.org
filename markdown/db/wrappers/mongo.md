@@ -24,7 +24,7 @@ sudo pacman -S bzr
 ### Downloading and installing
 
 ```sh
-go get github.com/gosexy/db/mongo
+go get menteslibres.net/gosexy/db/mongo
 ```
 
 ## Usage
@@ -33,9 +33,9 @@ Import the `gosexy/db` and `gosexy/db/mongo` packages.
 
 ```go
 import (
-  "github.com/gosexy/db"
+  "menteslibres.net/gosexy/db"
 	# Note that we are importing to the blank identifier.
-  _ "github.com/gosexy/db/mongo"
+  _ "menteslibres.net/gosexy/db/mongo"
 )
 ```
 

@@ -10,18 +10,18 @@ In order to work with `gosexy/db` the original driver had to be
 ## Downloading and installing
 
 ```sh
-go get github.com/gosexy/db/postgresql
+go get menteslibres.net/gosexy/db/postgresql
 ```
 
 ## Usage
 
-Import the `gosexy/db` and `github.com/gosexy/db/postgresql` packages.
+Import the `gosexy/db` and `gosexy/db/postgresql` packages.
 
 ```go
 import (
-  "github.com/gosexy/db"
+  "menteslibres.net/gosexy/db"
 	# Note that we are importing to the blank identifier.
-  _ "github.com/gosexy/db/postgresql"
+  _ "menteslibres.net/gosexy/db/postgresql"
 )
 ```
 

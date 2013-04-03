@@ -8,7 +8,7 @@ creating checksum hashes of strings or files.
 Use `go get` to download and install `gosexy/checksum`.
 
 ```sh
-go get github.com/gosexy/checksum
+go get menteslibres.net/gosexy/checksum
 ```
 
 ## Sample usage
@@ -19,7 +19,7 @@ package main
 import (
   "crypto"
   "fmt"
-  "github.com/gosexy/checksum"
+  "menteslibres.net/gosexy/checksum"
 )
 
 func main() {
@@ -45,6 +45,6 @@ func main() {
 
 ## Documentation
 
-Documentation is available at [godoc.org/github.com/gosexy/checksum][1].
+Documentation is available at [godoc.org/menteslibres.net/gosexy/checksum][1].
 
-[1]: http://godoc.org/github.com/gosexy/checksum
+[1]: http://godoc.org/menteslibres.net/gosexy/checksum

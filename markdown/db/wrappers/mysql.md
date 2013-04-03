@@ -9,7 +9,7 @@ a MySQL driver by [Julien Schmidt](http://www.julienschmidt.com/).
 ### Downloading and installing
 
 ```sh
-go get github.com/gosexy/db/mysql
+go get menteslibres.net/gosexy/db/mysql
 ```
 
 #### One step more
@@ -28,7 +28,7 @@ go build && go install
 Then build `gosexy/db/mysql` again:
 
 ```
-cd $GOPATH/src/github.com/gosexy/db/mysql
+cd $GOPATH/src/menteslibres.net/gosexy/db/mysql
 go build && go install
 ```
 
@@ -38,13 +38,13 @@ this topic.
 
 ## Usage
 
-Import the `gosexy/db` and `github.com/gosexy/db/mysql` packages.
+Import the `gosexy/db` and `gosexy/db/mysql` packages.
 
 ```go
 import (
-  "github.com/gosexy/db"
+  "menteslibres.net/gosexy/db"
 	# Note that we are importing to the blank identifier.
-  _ "github.com/gosexy/db/mysql"
+  _ "menteslibres.net/gosexy/db/mysql"
 )
 ```
 

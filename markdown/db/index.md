@@ -13,7 +13,7 @@ hand.
 Use `go get` to download and install `gosexy/db`.
 
 ```sh
-go get -u github.com/gosexy/db
+go get -u menteslibres.net/gosexy/db
 ```
 
 This package provides the basic structures and types but it cannot connect to any
@@ -49,9 +49,9 @@ the [blank identifier](http://golang.org/doc/effective_go.html#blank).
 
 ```go
 import (
-  "github.com/gosexy/db"
+  "menteslibres.net/gosexy/db"
   // Note the underscore at the beginning
-  _ "github.com/gosexy/db/postgresql"
+  _ "menteslibres.net/gosexy/db/postgresql"
 )
 ```
 

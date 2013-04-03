@@ -143,7 +143,7 @@ To avoid being so verbose without losing expresiveness, you could use a package
 like `gosexy/dig`:
 
 ```
-go get -u github.com/gosexy/dig
+go get -u menteslibres.net/gosexy/dig
 ```
 
 This package is an on-going experiment that allows you to get map values (any
@@ -156,7 +156,7 @@ package main
 
 import (
   "encoding/json"
-  "github.com/gosexy/dig"
+  "menteslibres.net/gosexy/dig"
   "fmt"
 )
 

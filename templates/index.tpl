@@ -18,6 +18,7 @@
     <meta name="go-import" content="menteslibres.net/gosexy/dig git https://github.com/gosexy/dig">
     <meta name="go-import" content="menteslibres.net/gosexy/to git https://github.com/gosexy/to">
     <meta name="go-import" content="menteslibres.net/gosexy/cli git https://github.com/gosexy/cli">
+    <meta name="go-import" content="menteslibres.net/gosexy/resource git https://github.com/gosexy/resource">
 
     {{ if .IsHome }}
         <title>{{ setting "page/head/title" }}</title>

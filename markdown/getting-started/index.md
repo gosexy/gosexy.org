@@ -223,7 +223,7 @@ PostgreSQL or SQLite3:
 
 */
 
-// And this is how you do it with gosexy/db:
+// And this is how you could do it with gosexy/db:
 
 people.Find(
   db.Cond {

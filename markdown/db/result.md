@@ -72,17 +72,26 @@ results, _ := people.Query(
   db.Cond { "name": "John" },
 )
 
-
 // Iterating over results.
 for {
   item := struct{Name string}{}
+
   err := results.Next(&item)
-  if err != nil {
-    // Will result an error when no more rows are left.
+
+  if err == nil {
+    // If there is no error we can use person.
+    fmt.Printf("Name: %s\n", person.Name)
+  } else if err == db.ErrNoMoreRows {
+    // This error means we have read all rows.
     break
+  } else {
+    // Another kind of error needs proper management.
+    panic(err.Error())
   }
-  fmt.Printf("Name: %s\n", person.Name)
 }
+
+// Remember to close the result set.
+results.Close()
 ```
 
 ### db.Result.All(interface{}) *error*
@@ -139,7 +148,7 @@ Panics if the argument is not a pointer to map/struct.
 
 Returns error when there are no more rows for reading.
 
-It is recommended to use db.Result.Close() after reading the result set.
+Use db.Result.Close() after reading the result set.
 
 ```go
 people, _ := sess.Collection("people")
@@ -153,13 +162,17 @@ for {
 
   err := results.Next(&item)
 
-  if err != nil {
+  if err == nil {
+    fmt.Printf("Name: %s\n", item["name"])
+  } else if err == db.ErrNoMoreRows {
+    // No more rows.
     break
+  } else {
+    panic(err.Error())
   }
-
-  fmt.Printf("Name: %s\n", item["name"])
 }
 
+// Remember to close the result set.
 results.Close()
 ```
 

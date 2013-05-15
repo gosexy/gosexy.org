@@ -19,6 +19,7 @@
     <meta name="go-import" content="menteslibres.net/gosexy/to git https://github.com/gosexy/to">
     <meta name="go-import" content="menteslibres.net/gosexy/cli git https://github.com/gosexy/cli">
     <meta name="go-import" content="menteslibres.net/gosexy/resource git https://github.com/gosexy/resource">
+    <meta name="go-import" content="menteslibres.net/gosexy/validate git https://github.com/gosexy/validate">
 
     {{ if .IsHome }}
         <title>{{ setting "page/head/title" }}</title>

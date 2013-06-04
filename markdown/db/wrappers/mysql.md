@@ -12,11 +12,14 @@ a MySQL driver by [Julien Schmidt](http://www.julienschmidt.com/).
 go get menteslibres.net/gosexy/db/mysql
 ```
 
-#### One step more
+#### Using go1.0.x?
 
-There is an special extra step required to work with Julien's driver.
+There is an special extra step required to work with Julien's driver and
+**go1.0.x**.
 
-After you've pulled the package with `go get`, go to the driver's path and
+If you're using **go1.1** the problem is already fixed.
+
+After you've pulled the package with `go get`, `cd` to the driver's path and
 checkout a special revision:
 
 ```
@@ -32,7 +35,7 @@ cd $GOPATH/src/menteslibres.net/gosexy/db/mysql
 go build && go install
 ```
 
-Please check out this
+Please see this
 [issue](https://github.com/go-sql-driver/mysql/issues/48) to keep updated on
 this topic.
 

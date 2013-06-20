@@ -49,7 +49,7 @@ import (
 ### Connecting to a SQLite3 database
 
 ```go
-sess, err := db.Open("mongo", db.DataSource{Database: "/path/to/sqlite3.db", ...})
+sess, err := db.Open("sqlite", db.DataSource{Database: "/path/to/sqlite3.db", ...})
 
 if err != nil {
 	panic(err)

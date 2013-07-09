@@ -132,6 +132,14 @@ Returns the names of all collections in the current database.
 Changes the source database during connection. Returns *error* if the operation
 fails.
 
+### db.Database.Begin() *error*
+
+Precedes the beginning of a transaction.
+
+### db.Database.End() *error*
+
+Marks the end of the current transaction.
+
 ### db.Database.Drop() *error*
 
 Deletes the entire database and all its collections. Returns *error* if it

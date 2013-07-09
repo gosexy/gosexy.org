@@ -38,6 +38,17 @@ type Database interface {
     Changes the active database.
   */
   Use(string) error
+
+  /*
+    Starts a transaction block.
+  */
+  Begin() error
+
+  /*
+    Ends a transaction block.
+  */
+  End() error
+
   /*
     Drops the active database.
   */

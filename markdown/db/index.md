@@ -3,136 +3,29 @@
 The `gosexy/db` package is a database abstraction and a collection of wrappers
 for popular third party SQL and No-SQL database drivers.
 
-Our main goal is to provide a common, simplified and consistent layer for
-wrapping generic database tasks such as *deleting*, *updating*, *removing*,
-*counting* and *finding* rows without the need of writing SQL statements by
-hand.
+The main goal of this project is to provide a common, simplified and consistent
+layer for executing generic database tasks such as *deleting*, *updating*,
+*removing*, *counting* and *finding* rows without the need of writing repetitive
+SQL statements by hand.
 
-## Installation
+## Base installation
 
-Use `go get` to download and install `gosexy/db`.
+Use `go get` to download and install the `gosexy/db` *base* library.
 
 ```sh
 go get -u menteslibres.net/gosexy/db
 ```
 
-This package provides the basic structures and types but it cannot connect to any
-database by itself, in order to connect to a database a *wrapper* is required.
+In order to query a database a *wrapper* is required.
 
-## Database wrappers
+## Available wrappers
 
-Each wrapper has its own requeriments, please refer to the appropriate wrapper's
-page to read installing instructions.
+See the wrapper's page for installation instructions and usage examples.
 
-* [mongo](/gosexy/db/wrappers/mongo)
-* [mysql](/gosexy/db/wrappers/mysql)
-* [postgresql](/gosexy/db/wrappers/postgresql)
-* [sqlite](/gosexy/db/wrappers/sqlite)
-
-## Usage example
-
-Here's an example on how to connect to a [PostgreSQL](http://postgresql.org)
-database.
-
-Go to the [PostgreSQL driver](/gosexy/db/wrappers/postgresql)'s page to read
-instructions on how to install the wrapper.
-
-You can follow the same steps for any other database wrapper, just replace
-"postgresql" with the name of the wrapper you want to use, for example
-"mongo" or "mysql".
-
-### 1. Import the wrapper
-
-Once the wrapper is installed, import both the `gosexy/db` and the
-`gosexy/db/{drivername}` packages. The drive package must be imported to
-the [blank identifier](http://golang.org/doc/effective_go.html#blank).
-
-```go
-import (
-  "menteslibres.net/gosexy/db"
-  // Note the underscore at the beginning
-  _ "menteslibres.net/gosexy/db/postgresql"
-)
-```
-
-### 2. Set up the source
-
-Put your database settings into a variable.
-
-```go
-var settings = db.DataSource{
-  Host:     "localhost",
-  Database: "test",
-  User:     "myuser",
-  Password: "mypass",
-}
-```
-
-### 3. Connect to the source.
-
-Use `db.Open()` to actually connect to the database using the variable you've
-just created, the first argument must be the driver's name (`"postgresql"` in
-this case).
-
-```go
-// func db.Open(string, db.DataSource) -> (db.Database, error).
-sess, err := db.Open("postgresql", settings)
-
-if err != nil {
-  panic(err)
-}
-
-// func db.Database.Close() -> error
-defer sess.Close()
-```
-
-### 4. Query collections
-
-Request a collection from the database using `db.Database.Collection()`, and
-use the returned value to query the collection.
-
-```go
-// func db.Database.Collection(string) -> (db.Collection, error)
-people, _ := sess.Collection("people")
-
-// func db.Collection.FindAll(...interface{}) -> ([]db.Item, error)
-items, err := people.FindAll(
-  // Query condition
-  db.Cond { "name": "Peter" },
-)
-
-if err != nil {
-  panic(err.Error())
-}
-
-// Looping over the results.
-for _, item := range items {
-  fmt.Printf("Last name: %s\n", item["last_name"])
-}
-```
-
-## What's next?
-
-Congratulations!
-
-Now that you are connected to a database you can use the
-[db.Database](/gosexy/db/database) and [db.Collection](/gosexy/db/collection) methods to
-create queries and retrieve results.
-
-## More code examples
-
-* For MongoDB
-  * [Example](https://github.com/gosexy/db/blob/master/_examples/mongo/main.go)
-  * [Test file](https://github.com/gosexy/db/blob/master/mongo/mongo_test.go)
-* For MySQL
-  * [Example](https://github.com/gosexy/db/blob/master/_examples/mysql/main.go)
-  * [Test file](https://github.com/gosexy/db/blob/master/mysql/mysql_test.go)
-* For PostgreSQL
-  * [Example](https://github.com/gosexy/db/blob/master/_examples/postgresql/main.go)
-  * [Test file](https://github.com/gosexy/db/blob/master/postgresql/postgresql_test.go)
-* For SQLite
-  * [Example](https://github.com/gosexy/db/blob/master/_examples/sqlite/main.go)
-  * [Test file](https://github.com/gosexy/db/blob/master/sqlite/sqlite_test.go)
+* Instructions for [MongoDB](/gosexy/db/wrappers/mongo)
+* Instructions for [MySQL](/gosexy/db/wrappers/mysql)
+* Instructions for [PostgreSQL](/gosexy/db/wrappers/postgresql)
+* Instructions for [SQLite](/gosexy/db/wrappers/sqlite)
 
 ## Development
 
@@ -140,5 +33,5 @@ Want to get involved? we're [hacking on github](http://github.com/gosexy/db).
 
 ## Got bugs?
 
-Please report bugs and suggestions to the
+Please report bugs and suggestions to our
 [issues page](https://github.com/gosexy/db/issues).

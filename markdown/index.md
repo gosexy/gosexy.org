@@ -1,44 +1,38 @@
 ## The project
 
-The goal of this project is to get fun by creating experiments, [cgo][3]
-wrappers and pure [Go][1] libraries that could be used by other [Go][1]
-learners while mastering their path in the language.
+The goal of this project is to code [Go][1] and get fun while learning.
 
 ## The toolbelt
 
-All these libraries are licensed under the [MIT license][4], so they're all
-free for commercial, non-commercial, private and public use.
+This is a toolbelt I've coded for myself and that I use on my projects.
+
+Feel free to use any of the published libraries in commercial and
+non-commercial projects, they're released under the [MIT License][4].
 
 * [gosexy/db](/gosexy/db) Database abstraction for SQL and NoSQL databases.
 * [gosexy/canvas](/gosexy/canvas) Image manipulation library on top of
-ImageMagick's MagickWand (cgo).
-* [gosexy/to](/gosexy/to) Type conversion utilities.
+ImageMagick's MagickWand (via [cgo][3]).
+* [gosexy/to](/gosexy/to) Utilities for converting between Go data types.
 * [gosexy/dig](/gosexy/dig) A library that makes easy traversing maps and
-digging into nested values.
+digging on nested values.
 * [gosexy/redis](/gosexy/redis) A redis client.
 * [gosexy/yaml](/gosexy/yaml) A YAML reader (goyaml wrapper).
 * [gosexy/checksum](/gosexy/checksum) Utilily methods for generating crypto
 hashes of strings and files.
 
-## Motivation
+## Support
 
-My name is [José Carlos][5].
+If you have any problem check the [project page][6] on github first, each
+project has its own issue tracker where you can ask for support, if you think
+the docs are unclear please feel free to open a issue ticket too.
 
-I started to learn [Go][1] since [1.0][7] and so long it has been a refreshing
-ride. I am far from being an expert, but I really enjoy the language, it makes
-everyday coding happier for me. "gosexy" is a pun-intended name for a set of
-utilities I've produced in my learning journey and that I still use.
-
-Feel free to browse the source at the project's [github repo][6], use it,
-comment on it, criticize it, fork it and *hack* it.
-
-And please, don't hesitate to [drop me a line](jose.carlos@menteslibres.org) if
-you need anything or even if you just want to say hi :-).
+And if your problem is not related to code, you want me to [hack in your
+project][5] or even if you just want to say hi please drop
+me a line at [jose.carlos@menteslibres.net](jose.carlos@menteslibres.net)
+and we'll get in contact.
 
 [1]: http://golang.org
-[2]: http://gosexy.org
 [3]: http://golang.org/cmd/cgo/
 [4]: http://opensource.org/licenses/MIT
-[5]: http://xiam.menteslibres.org
+[5]: http://menteslibres.net/xiam
 [6]: http://github.com/gosexy
-[7]: http://blog.golang.org/2012/03/go-version-1-is-released.html

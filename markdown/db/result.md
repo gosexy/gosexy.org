@@ -94,7 +94,11 @@ for {
 results.Close()
 ```
 
-### db.Result.All(interface{}) *error*
+## Reference
+
+### Methods
+
+#### db.Result.All(interface{}) *error*
 
 Dumps the whole result set into an slice.
 
@@ -118,7 +122,7 @@ for _, item := range items {
 }
 ```
 
-### db.Result.One(interface{}) *error*
+#### db.Result.One(interface{}) *error*
 
 Copies the first item of the result set into the given argument.
 
@@ -140,7 +144,7 @@ results.One(&item)
 fmt.Printf("Name: %s\n", item["name"])
 ```
 
-### db.Result.Next(interface{}) *error*
+#### db.Result.Next(interface{}) *error*
 
 Copies the next item of the result set into the given argument.
 
@@ -176,6 +180,6 @@ for {
 results.Close()
 ```
 
-### db.Result.Close() *error*
+#### db.Result.Close() *error*
 
 Closes the result set so no more results could be returned.

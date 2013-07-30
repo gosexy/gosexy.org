@@ -1,13 +1,100 @@
-# Querying the database
+# gosexy/db: Querying the database
 
-Queries are operations on [collections](/gosexy/db/collection), the `gosexy/db`
-package implements some custom datatypes that can be used as arguments on
-`db.Collection` functions like `db.Collection.Query()`, `db.Collection.Find()`
-or `db.Collection.FindAll()`.
+Queries are operations on [collections](/gosexy/db/collection)
 
-## Arguments
+The `gosexy/db` package implements some custom datatypes that can be passed as
+arguments on `db.Collection` methods like `db.Collection.Query()`,
+`db.Collection.Find()` or `db.Collection.FindAll()` to represent logical
+statements such as OR, AND, = or any combination of them, delimiters such as
+OFFSET, LIMIT and order comparisons such ad ORDER BY.
 
-### db.Cond
+## Usage examples
+
+### Simple condition
+
+```go
+// SQL: WHERE foo = 'bar'
+people.Find(
+  db.Cond{
+    "foo": "bar",
+  }
+)
+```
+
+### Conjunction
+
+
+```go
+// SQL: WHERE foo = 'bar' AND baz = 1
+people.Find(
+  db.Cond{
+    "foo": "bar",
+    "baz": 1,
+  }
+)
+
+// SQL: WHERE foo = 'bar' AND baz = 1 (another way)
+people.Find(
+  db.And {
+    db.Cond{ "foo": "bar" },
+    db.Cond{ "baz": 1 },
+  },
+)
+```
+
+### Disjunction
+
+```go
+// SQL: WHERE foo = 'bar' OR foo = 'baz'
+people.Find(
+  db.Or{
+    db.Cond {"foo": "bar"},
+    db.Cond {"foo": "baz"},
+  }
+)
+```
+
+### Slightly more complicated example.
+
+```go
+// SQL: WHERE name = 'john'
+// AND (last_name = 'connor' OR last_name = 'lennon')
+people.Find(
+  db.And{
+    db.Cond{
+      "name": "john",
+    },
+    db.Or{
+      db.Cond {"last_name": "connor"},
+      db.Cond {"last_name": "lennon"},
+    }
+  }
+)
+```
+
+### Numerical comparisons
+
+```go
+// SQL: WHERE page_views >= 26
+people.Find(
+  db.Cond{
+    "page_views >=": 26,
+  },
+)
+
+// SQL: WHERE page_views < 26
+people.Find(
+  db.Cond{
+    "page_views <": 26,
+  },
+)
+```
+
+## Reference
+
+### Argument types
+
+#### db.Cond
 
 ```go
 // package db
@@ -15,9 +102,9 @@ type Cond map[string]interface{}
 ```
 
 This type was created to represent conditions in a query. Conditions have
-operators and these operators may be incompatible between databases, while
-there is certain level of compatibility we recommend using operators depending
-on the database you're working on.
+operators and these operators may be incompatible between databases. While
+there is certain level of compatibility between operators we recommend
+using operators depending on the database you're working on.
 
 Operators are specified with a space after the field name, so, for the `mongo`
 driver you could use `"age $lt"` (field "age", space, "$lt") or `"age $gt"`
@@ -54,7 +141,7 @@ You can use one or many `db.Cond` values as arguments for:
 * `db.Collection.Update()`
 * `db.Collection.Query()`
 
-### db.And
+#### db.And
 
 ```go
 // package db
@@ -94,7 +181,7 @@ You can use one or many `db.And` values as arguments for:
 * `db.Collection.Update()`
 * `db.Collection.Query()`
 
-### db.Or
+#### db.Or
 
 ```go
 // package db
@@ -122,7 +209,7 @@ You can use one or many `db.Or` as arguments for:
 * `db.Collection.Update()`
 * `db.Collection.Query()`
 
-### db.Fields
+#### db.Fields
 
 ```go
 // package db
@@ -145,7 +232,7 @@ You can use one `db.Fields` value as argument for:
 * `db.Collection.FindAll()`
 * `db.Collection.Query()`
 
-### db.Sort
+#### db.Sort
 
 ```go
 // package db
@@ -174,7 +261,7 @@ You can use one `db.Sort` value as an argument for:
 * `db.Collection.FindAll()`
 * `db.Collection.Query()`
 
-### db.Limit
+#### db.Limit
 
 ```go
 // package db
@@ -197,7 +284,7 @@ You can use one `db.Limit` as argument for:
 * `db.Collection.Count()`
 * `db.Collection.Query()`
 
-### db.Offset
+#### db.Offset
 
 ```go
 // package db
@@ -219,7 +306,7 @@ You can use one `db.Offset` value as argument for:
 * `db.Collection.Count()`
 * `db.Collection.Query()`
 
-### db.Set
+#### db.Set
 
 ```go
 // package db
@@ -239,7 +326,7 @@ people.Update(
 
 You can use `db.Set` with `db.Collection.Update()`.
 
-### db.Relate
+#### db.Relate
 
 ```go
 // package db
@@ -275,7 +362,7 @@ You can use `db.Relate` as argument for:
 * `db.Collection.Count()`
 * `db.Collection.Query()`
 
-### db.RelateAll
+#### db.RelateAll
 
 ```go
 // package db
@@ -309,7 +396,7 @@ You can use `db.RelateAll` as argument for:
 * `db.Collection.Count()`
 * `db.Collection.Query()`
 
-### db.On
+#### db.On
 
 ```go
 // package db
@@ -334,7 +421,7 @@ people.Find(
 
 You can use `db.On` only as value for `db.Relate` and `db.RelateAll` maps.
 
-### db.Upsert
+#### db.Upsert
 
 ```go
 // package db
@@ -356,7 +443,7 @@ You can use `db.Upsert` with `db.Collection.Update()`.
 
 At this time only available for the [mongo](/gosexy/db/wrappers/mongo) driver.
 
-### db.Modify
+#### db.Modify
 
 ```go
 // package db

@@ -1,19 +1,18 @@
-# db.Item
+# gosexy/db: db.Item
 
-Items are rows or documents, correct nomenclature depends on the database.
+Items are *rows* or *documents*, correct nomenclature depends on the database.
 
-For SQL databases they are just ``map[string] interface{}`` with no nested
-values, NoSQL databases can have nested values like slices or other maps.
-
-Either way, a `db.Item` can be treated as a `map[string] interface{}`.
+A `db.Item` is just an alias for `map[string] interface{}`.
 
 ```go
 type Item map[string]interface{}
 ```
 
-## Creating a db.Item object
+## Examples
 
-Use `db.Open` to create and retrieve a `db.Database`.
+### Creating a db.Item{} object
+
+Use `db.Open` to create and retrieve a `db.Database` variable `sess`.
 
 ```go
 // Database settings
@@ -24,38 +23,43 @@ settings := db.DataSource{
   Password: "mypass",
 }
 
-// func db.Open(string, db.DataSource) -> (db.Database, error).
+// func db.Open(string, db.DataSource)
+// --> (db.Database, error).
 sess, err := db.Open("postgresql", settings)
 
 if err != nil {
   panic(err)
 }
 
-// func db.Database.Close() -> error
+// func db.Database.Close()
+// --> error
 defer sess.Close()
 ```
 
-Point a variable to a collection using the `db.Database.Collection()` or
-`db.Database.ExistentCollection()` methods.
+Then use the `db.Database.Collection()` on `sess` to retrieve a `db.Collection`
+pointer.
 
 ```go
-// Collection could not exists, an error would be returned.
+// If the collection does not exists an error is returned.
 people, err := sess.Collection("people")
 
 // Collection must exists, it will panic otherwise.
 users := sess.ExistentCollection("users")
 ```
 
-Finally, use `db.Collection.Find()` or `db.Collection.FindAll()` to fetch one or many items.
+Finally use `db.Collection.Find()` to get a `db.Item{}` map or
+`db.Collection.FindAll()` to get an array of `db.Item{}`s.
 
 ```go
-// db.Collection.Find(...interface{}) *(db.Item, error)*
+// db.Collection.Find(...interface{})
+// --> (db.Item, error)
 john, _ := users.Find(db.Cond{"name": "john"})
 if john != nil {
 	fmt.Println("John was found.")
 }
 
-// db.Collection.FindAll(...interface{}) *([]db.Item, error)*
+// db.Collection.FindAll(...interface{})
+// --> ([]db.Item, error)
 smiths, _ := users.Find(db.Cond{"last_name": "smith"})
 
 for _, smith := range smiths {
@@ -65,8 +69,8 @@ for _, smith := range smiths {
 
 ## Tips and tricks
 
-Castings and conversions could be tricky with `interface{}`s, these packages
-may be useful.
+Castings and conversions with `interface{}` could be very tricky, take a look
+at those packages:
 
 * [menteslibres.net/gosexy/dig][1] For quick access to nested values.
 * [menteslibres.net/gosexy/to][2] For adventurous value conversions.

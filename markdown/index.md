@@ -1,7 +1,3 @@
-## The project
-
-The goal of this project is to code [Go][1] and get fun while learning.
-
 ## The toolbelt
 
 Feel free to use any of the published libraries in commercial and

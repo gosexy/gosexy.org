@@ -4,8 +4,6 @@ The goal of this project is to code [Go][1] and get fun while learning.
 
 ## The toolbelt
 
-This is a toolbelt I've coded for myself and that I use on my projects.
-
 Feel free to use any of the published libraries in commercial and
 non-commercial projects, they're released under the [MIT License][4].
 
@@ -30,6 +28,8 @@ And if your problem is not related to code, you want me to [hack in your
 project][5] or even if you just want to say hi please drop
 me a line at [jose.carlos@menteslibres.net](jose.carlos@menteslibres.net)
 and we'll get in contact.
+
+Thanks for passing by!
 
 [1]: http://golang.org
 [3]: http://golang.org/cmd/cgo/

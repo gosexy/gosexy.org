@@ -98,7 +98,7 @@
         <img src="{{ asset "/images/gophers.png" }}" />
         <h1>menteslibres.net/gosexy</h1>
         <p>
-          Libraries and wrappers for the <a href="http://golang.org" target="_blank">Go</a> learner.
+          (Sexy) libraries for <a href="http://golang.org" target="_blank">Go</a> developers.
         </p>
         <p class="pull-right">
           <a href="{{ asset "/getting-started" }}" class="btn btn-primary btn-large">

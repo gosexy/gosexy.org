@@ -101,6 +101,7 @@ For a few more code examples on PostgreSQL and `gosexy/db` see:
 
 In order to work with `gosexy/db` the original driver had to be
 [forked][1], the changes we made to it were incompatible with some of
-[pq][1]'s own features.
+[pq][2]'s own features.
 
 [1]: https://github.com/xiam/gopostgresql
+[2]: https://github.com/bmizerany/pq

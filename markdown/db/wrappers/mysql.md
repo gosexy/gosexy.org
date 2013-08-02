@@ -4,67 +4,97 @@ This package is a wrapper of
 [go-sql-driver/mysql](https://github.com/go-sql-driver/mysql),
 a MySQL driver by [Julien Schmidt](http://www.julienschmidt.com/).
 
-## Installation
+## Usage example
 
-### Downloading and installing
+### 1. Get the wrapper
 
 ```sh
-go get menteslibres.net/gosexy/db/mysql
+go get -u menteslibres.net/gosexy/db
+go get -u menteslibres.net/gosexy/db/mysql
 ```
 
-#### Using go1.0.x?
+### 1. Import the wrapper
 
-There is an special extra step required to work with Julien's driver and
-**go1.0.x**.
-
-If you're using **go1.1** the problem is already fixed.
-
-After you've pulled the package with `go get`, `cd` to the driver's path and
-checkout a special revision:
-
-```
-cd $GOPATH/src/github.com/go-sql-driver/mysql
-git checkout a8a04cc28d45f986dbb9c4c2e76e805bf7b17787
-go build && go install
-```
-
-Then build `gosexy/db/mysql` again:
-
-```
-cd $GOPATH/src/menteslibres.net/gosexy/db/mysql
-go build && go install
-```
-
-Please see this
-[issue](https://github.com/go-sql-driver/mysql/issues/48) to keep updated on
-this topic.
-
-## Usage
-
-Import the `gosexy/db` and `gosexy/db/mysql` packages.
+Import both the `gosexy/db` and the `gosexy/db/mysql` packages. The driver
+package must be imported to the
+[blank identifier](http://golang.org/doc/effective_go.html#blank) as we are not
+going to use any of its methods directly.
 
 ```go
 import (
   "menteslibres.net/gosexy/db"
-	# Note that we are importing to the blank identifier.
+  // Note the underscore at the beginning
   _ "menteslibres.net/gosexy/db/mysql"
 )
 ```
 
-### Connecting to a MySQL database
+### 3. Define how to connect to the database
+
+Use a `db.DataSource` variable to store the database settings.
 
 ```go
-sess, err := db.Open("mysql", db.DataSource{Host: "127.0.0.1", ...})
+var settings = db.DataSource{
+  Host:     "localhost",
+  Database: "test",
+  User:     "myuser",
+  Password: "mypass",
+}
+```
+
+### 3. Connect to the source.
+
+Use `db.Open()` to request a connection to the database and
+`db.Database.Close()` to close it.
+
+```go
+// func db.Open(driverName string, settings db.DataSource)
+// --> (db.Database, error)
+sess, err := db.Open("mysql", settings)
 
 if err != nil {
-	panic(err)
+  panic(err)
 }
 
 defer sess.Close()
 ```
 
-### Querying the database
+### 4. Query collections
 
-Check out the [gosexy/db documentation](/gosexy/db) for documentation in how to query
-a collection.
+You can refer to a specific table with `db.Database.Collection()`, use the
+returned `db.Collection` value to query the collection.
+
+```go
+// func db.Database.Collection(tableName string)
+// --> (db.Collection, error)
+people, _ := sess.Collection("people")
+
+// func db.Collection.FindAll(...interface{})
+// --> ([]db.Item, error)
+items, err := people.FindAll(
+  // Query condition
+  db.Cond { "name": "Peter" },
+)
+
+if err != nil {
+  panic(err.Error())
+}
+
+// Looping over the results.
+for _, item := range items {
+  fmt.Printf("Last name: %s\n", item["last_name"])
+}
+```
+
+### 5. What's next?
+
+Congratulations!
+
+Now that you know how to connecto to a database with `gosexy/db` you can use
+all the [db.Database](/gosexy/db/database) and
+[db.Collection](/gosexy/db/collection) methods.
+
+For a few more code examples on MySQL and `gosexy/db` see:
+
+* [Example](https://github.com/gosexy/db/blob/master/_examples/mysql/main.go)
+* [Test file](https://github.com/gosexy/db/blob/master/mysql/mysql_test.go)
 

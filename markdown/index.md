@@ -7,6 +7,8 @@ non-commercial projects, they're released under the [MIT License][4].
 * [gosexy/canvas](/gosexy/canvas) Image manipulation library on top of
 ImageMagick's MagickWand (via [cgo][3]).
 * [gosexy/to](/gosexy/to) Utilities for converting between Go data types.
+* [gosexy/validate](/gosexy/validate) Applies validation rules on user-provided
+data.
 * [gosexy/dig](/gosexy/dig) A library that makes easy traversing maps and
 digging on nested values.
 * [gosexy/redis](/gosexy/redis) A redis client.
